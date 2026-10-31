@@ -20,9 +20,9 @@
   <meta property="og:image:alt" content="Your Name — Game Developer & Systems Architect"> -->
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/css/styles.css?v=6">
+  <link rel="stylesheet" href="assets/css/styles.css?v=7">
   <script>document.documentElement.classList.add("js");</script>
-  <script src="assets/js/main.js?v=6" defer></script>
+  <script src="assets/js/main.js?v=7" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -114,7 +114,7 @@
         <header class="reveal">
           <p class="project__index">Project A · Flagship</p>
           <h3 class="project__title" id="pa-title">Voxel &amp; Ocean World</h3>
-          <p class="project__summary">An open, diggable world with a stylized ocean. SDF terrain sits on a voxel material grid, so every dug cell keeps its material — and the shader reads it straight from vertex data, one draw call per chunk.</p>
+          <p class="project__summary">An open, diggable world with a stylized ocean. SDF terrain sits on a voxel material grid, so every dug cell keeps its material — and the shader reads that ID from vertex data through one shared material surface per chunk.</p>
           <dl class="meta">
             <div><dt>Role</dt><dd>Solo · engine &amp; rendering</dd></div>
             <div><dt>Stack</dt><dd>Godot 4.3+ · Forward+ · GDScript 2.0 · Godot shaders</dd></div>
@@ -169,7 +169,7 @@
               <div class="ps">
                 <div class="ps__item"><span class="ps__label">Problem</span><p>An SDF encodes distance to a surface, not what it's made of. Separate meshes per material multiply draw calls — and digging still has to reveal the right material underneath.</p></div>
                 <!-- TODO(owner): add chunk size, meshing thread (e.g. WorkerThreadPool) and remesh time per edit. -->
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A parallel voxel grid stores material IDs. For every emitted triangle, the mesher repeats one ID across the CUSTOM0 values of all three vertices; a flat varying then selects among the layers of one Texture2DArray — one shared material and one draw call per chunk.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A parallel voxel grid stores material IDs. For every emitted triangle, the mesher repeats one ID across the CUSTOM0 values of all three vertices; a flat varying then selects among the layers of one Texture2DArray — one shared material surface per chunk instead of one mesh per material.</p></div>
                 <p class="ps__keys"><span>Key techniques</span> SDF meshing · parallel voxel material grid · per-triangle IDs in CUSTOM0 · Texture2DArray · triplanar mapping</p>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: digging reveals voxel materials">
@@ -191,6 +191,7 @@
               <div class="ps">
                 <div class="ps__item"><span class="ps__label">Problem</span><p>Volumetric-looking skies usually mean extra geometry or heavy fog volumes that fight with the ocean and terrain shading.</p></div>
                 <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A CompositorEffect raymarches clouds on the GPU after transparency, straight into the camera's color buffer — no scene geometry, toggleable per camera.</p></div>
+                <p class="ps__keys"><span>Key techniques</span> CompositorEffect · post-transparent render callback · GPU raymarching · per-camera toggle</p>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: compositor clouds">
                 <div class="panel__inner">
@@ -274,7 +275,8 @@
             <div class="case__body">
               <div class="ps">
                 <div class="ps__item"><span class="ps__label">Problem</span><p>Fully simulated building pieces jitter, drift and get expensive once players stack dozens of them.</p></div>
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Pieces snap to sockets, stay dynamic while settling and sleep at rest. Disturbances wake only the affected bodies — idle cost drops without losing physical interaction.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Pieces snap to sockets, stay dynamic while settling, and sleep at rest. Disturbances wake only the affected bodies — idle cost drops without losing physical interaction.</p></div>
+                <p class="ps__keys"><span>Key techniques</span> Socket snapping · physics settling · sleep at rest · wake on disturbance</p>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: building and collapsing a structure">
                 <div class="panel__inner">
@@ -324,8 +326,9 @@
             </div>
             <div class="case__body">
               <div class="ps">
-                <div class="ps__item"><span class="ps__label">Problem</span><p>With three planets and a sun all pulling at once there is no closed-form orbit — the player still needs to see where the rocket will go.</p></div>
+                <div class="ps__item"><span class="ps__label">Problem</span><p>With three planets and a sun all pulling at once there is no general closed-form solution for the trajectories — the player still needs to see where the rocket will go.</p></div>
                 <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A ghost copy of the system is stepped forward with the same fixed-step integrator as the live simulation, so the drawn path and the real flight agree.</p></div>
+                <p class="ps__keys"><span>Key techniques</span> Ghost-state simulation · shared fixed-step integrator · moving gravity sources · no patched conics</p>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: predicted orbit line updating during a burn">
                 <div class="panel__inner">
@@ -346,6 +349,7 @@
               <div class="ps">
                 <div class="ps__item"><span class="ps__label">Problem</span><p>Normal launches hide integrator errors — gravity is gentle and steps are small compared to the forces involved.</p></div>
                 <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Starting on the sun's surface is a deliberate high-acceleration regression case: predicted and live trajectories are compared over the same horizon. Close approaches, timestep variation, and long-duration runs cover the other failure modes.</p></div>
+                <p class="ps__keys"><span>Key techniques</span> Extreme initial conditions · predicted vs. live comparison · regression scenes</p>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: rocket escaping from the sun">
                 <div class="panel__inner">
@@ -372,7 +376,7 @@
         <p class="label">02 — 3D</p>
         <h2 class="section-title" id="models-title">Vehicles, modeled in Blender</h2>
         <!-- TODO(owner): add LOD0 triangle counts, material slots and texture resolution per vehicle. -->
-        <p class="section-intro">Hard-surface studies built for real-time use: game-ready topology, PBR materials, and baked detail, authored in Blender.</p>
+        <p class="section-intro">Hard-surface vehicle studies authored in Blender for real-time rendering, with PBR materials and baked detail.</p>
       </header>
 
       <div class="vehicles">

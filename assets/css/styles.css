@@ -482,7 +482,7 @@ main:focus { outline: none; }
 .ps__keys { color: var(--fg-3); font-size: var(--text-xs); line-height: 1.55; }
 .ps__keys span { display: block; margin-bottom: 0.2rem; color: var(--fg-3); font: var(--label-sm); letter-spacing: var(--label-track); text-transform: uppercase; }
 
-@container (min-width: 34rem) {
+@container (min-width: 30rem) {
   .case__body { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.75rem; align-items: start; }
   .case__body .panel { aspect-ratio: 4 / 3; position: sticky; top: calc(var(--nav-h) + env(safe-area-inset-top) + 1.5rem); }
 }
@@ -562,11 +562,12 @@ a.link-arrow:hover { border-color: var(--fg-2); background: rgb(255 255 255 / 0.
 a.link-arrow svg { width: 1rem; height: 1rem; fill: currentColor; flex: none; }
 a.link-arrow::after { content: "\2197"; color: var(--fg-3); transition: transform 0.3s var(--ease-out), color 0.3s; }
 a.link-arrow:hover::after { color: var(--fg); }
-.link-arrow--soon { color: var(--fg-4); font-weight: 400; }
+.link-arrow--soon { color: var(--fg-3); font-weight: 400; }
 .link-arrow__badge {
   padding: 0.1rem 0.4rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-strong);
   border-radius: 999px;
+  color: var(--fg-2);
   font: var(--label-sm);
   letter-spacing: var(--label-track);
   text-transform: uppercase;
