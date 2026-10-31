@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Your Name — Game Developer &amp; Systems Architect</title>
+  <meta name="description" content="Godot 4 / GDScript 2.0 game developer and systems architect: engine architecture, voxel worlds, shaders, physics simulation, 3D art and audio.">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Your Name — Game Developer &amp; Systems Architect">
+  <meta property="og:description" content="Engines, worlds and the sound they make. Godot 4 · GDScript 2.0 · shaders · physics · audio.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Cpath d='M9 22V10h3l4 7 4-7h3v12h-3v-7l-4 6.5L12 15v7z' fill='%23f5f5f5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <nav class="nav wrap" aria-label="Primary">
+      <a class="nav__brand" href="#top">Your Name</a>
+      <div class="nav__links">
+        <a href="#work">Work</a>
+        <a href="#models">3D</a>
+        <a href="#audio">Audio</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================================================== 1. HERO -->
+    <section class="hero wrap" aria-labelledby="hero-name">
+      <div class="hero__grid">
+        <!-- Replace the panel with:
+             <img src="assets/img/portrait.jpg" width="800" height="1000" alt="Portrait of Your Name" fetchpriority="high" decoding="async"> -->
+        <figure class="hero__portrait">
+          <div class="panel panel--img panel--portrait" role="img" aria-label="Portrait placeholder">
+            <div class="panel__inner">
+              <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5Z"/></svg>
+              <span class="panel__kind">Image · Portrait</span>
+            </div>
+          </div>
+        </figure>
+
+        <div class="hero__text">
+          <p class="status reveal" style="--i:0"><span class="status__dot" aria-hidden="true"></span>Open to roles · Remote / EU</p>
+          <h1 class="hero__name reveal" id="hero-name" style="--i:1">Your Name</h1>
+          <p class="hero__headline reveal" style="--i:2">Game developer &amp; systems architect. I build the engine layer, the world on top of it — and the sound it makes.</p>
+        </div>
+      </div>
+
+      <p class="hero__lede reveal" style="--i:3">Godot&nbsp;4 and GDScript&nbsp;2.0 from the render pipeline up: voxel/SDF terrain, custom shaders, N-body physics and tactical gameplay systems — profiled, measured and shipped as one coherent whole. Plus the 3D models and the music.</p>
+
+      <ul class="disciplines reveal" style="--i:4" aria-label="Disciplines">
+        <li>Graphics</li>
+        <li>Gameplay</li>
+        <li>Optimization</li>
+        <li>Sound</li>
+        <li>Design</li>
+      </ul>
+
+      <div class="actions reveal" style="--i:5">
+        <a class="btn btn--solid" href="#work">Selected work
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.25 2h1.5v8.6l3.2-3.2 1.05 1.06L8 13.5 2.99 8.46 4.05 7.4l3.2 3.2V2Z"/></svg>
+        </a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </section>
+
+    <!-- ===================================================== 2. PROJECTS -->
+    <section class="section wrap" id="work" aria-labelledby="work-title">
+      <header class="section-head reveal">
+        <p class="label">01 — Selected work</p>
+        <h2 class="section-title" id="work-title">Systems, worlds &amp; simulations</h2>
+        <p class="section-intro">Three Godot&nbsp;4 projects, each told as problem → solution. I state plainly what I wrote, what I adapted and where AI assisted.</p>
+      </header>
+
+      <!-- ---------- Project A -->
+      <article class="project" id="project-ocean" aria-labelledby="pa-title">
+        <header class="reveal">
+          <p class="project__index">Project A · Flagship</p>
+          <h3 class="project__title" id="pa-title">Voxel &amp; Ocean World</h3>
+          <p class="project__summary">An open, diggable world with a stylised ocean. SDF terrain sits on a voxel material grid, so every dug cell keeps its material — and the shader reads it straight from vertex data, one draw call per chunk.</p>
+          <dl class="meta">
+            <div><dt>Role</dt><dd>Solo · engine &amp; rendering</dd></div>
+            <div><dt>Stack</dt><dd>Godot 4 · GDScript 2.0 · Godot shaders</dd></div>
+            <div><dt>Status</dt><dd>In development</dd></div>
+          </dl>
+        </header>
+
+        <div class="project__media reveal">
+          <div class="video" data-yt-id="" data-yt-title="Voxel &amp; Ocean World — technical breakdown">
+            <button class="video__btn" type="button">
+              <span class="video__play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.8v12.4L14 8 3 1.8Z"/></svg></span>
+              <span class="video__caption">Technical breakdown</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Fill in real numbers: remove data-todo once measured. -->
+        <div class="metrics reveal" role="list">
+          <div class="metric" role="listitem"><span class="metric__value" data-todo>— → —</span><span class="metric__label">Terrain draw calls per chunk</span></div>
+          <div class="metric" role="listitem"><span class="metric__value" data-todo>— ms</span><span class="metric__label">GPU frame time, ocean + terrain</span></div>
+          <div class="metric" role="listitem"><span class="metric__value" data-todo>—</span><span class="metric__label">Materials in one Texture2DArray</span></div>
+        </div>
+
+        <div class="cases">
+          <section class="case reveal" aria-labelledby="pa-c1">
+            <div class="case__head">
+              <h4 class="case__title" id="pa-c1">Ocean shader</h4>
+              <div class="tags"><span class="tag">Adapted</span><span class="tag tag--own">Optimized</span><span class="tag tag--ai">AI-assisted</span></div>
+            </div>
+            <div class="case__body">
+              <div class="ps">
+                <div class="ps__item"><span class="ps__label">Problem</span><p>Good ocean techniques exist online, but as disconnected fragments — different conventions, redundant passes, no shared wave model.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Merged the useful parts into one Gerstner-based shader with my own wave logic, using AI as a sparring partner to unify the maths. Waves, normals and foam now come from a single evaluation per vertex.</p></div>
+              </div>
+              <figure class="panel panel--gif" aria-label="Animated preview placeholder: ocean waves and foam">
+                <div class="panel__inner">
+                  <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 15c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2v2c-2.5 0-2.5-2-5-2s-2.5 2-5 2-2.5-2-5-2-2.5 2-5 2v-2Zm0-5c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2v2c-2.5 0-2.5-2-5-2s-2.5 2-5 2-2.5-2-5-2-2.5 2-5 2v-2Z"/></svg>
+                  <span class="panel__kind">GIF · Shader</span>
+                  <span class="panel__desc">Wave motion, normals &amp; foam at grazing angles</span>
+                </div>
+              </figure>
+            </div>
+            <details class="code">
+              <summary>ocean.gdshader — Gerstner wave<span class="code__lang">gdshader</span></summary>
+<pre><code data-lang="gdshader">// One wave: dir.xy, steepness, wavelength. Summed 4x in vertex().
+vec3 gerstner(vec4 wave, vec3 p, inout vec3 tangent, inout vec3 binormal) {
+    float k = TAU / wave.w;
+    float c = sqrt(9.81 / k);
+    vec2 d = normalize(wave.xy);
+    float f = k * (dot(d, p.xz) - c * TIME);
+    float a = wave.z / k;
+    tangent  += vec3(-d.x * d.x * wave.z * sin(f), d.x * wave.z * cos(f), -d.x * d.y * wave.z * sin(f));
+    binormal += vec3(-d.x * d.y * wave.z * sin(f), d.y * wave.z * cos(f), -d.y * d.y * wave.z * sin(f));
+    return vec3(d.x * a * cos(f), a * sin(f), d.y * a * cos(f));
+}</code></pre>
+            </details>
+          </section>
+
+          <section class="case reveal" aria-labelledby="pa-c2">
+            <div class="case__head">
+              <h4 class="case__title" id="pa-c2">SDF terrain on a voxel material grid</h4>
+              <div class="tags"><span class="tag tag--own">Own system</span></div>
+            </div>
+            <div class="case__body">
+              <div class="ps">
+                <div class="ps__item"><span class="ps__label">Problem</span><p>Smooth SDF terrain has no notion of material. Splitting chunks by material multiplies meshes and draw calls, and digging needs to reveal the right colour underneath.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A voxel grid stores material IDs beneath the SDF. The mesher writes each vertex's material into a custom vertex channel; the shader samples one Texture2DArray by that index — one material, one draw call per chunk.</p></div>
+              </div>
+              <figure class="panel panel--gif" aria-label="Animated preview placeholder: digging reveals voxel materials">
+                <div class="panel__inner">
+                  <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 3 7v10l9 5 9-5V7l-9-5Zm0 2.3 6.7 3.7L12 11.7 5.3 8 12 4.3ZM5 9.7l6 3.3v6.6l-6-3.3V9.7Zm8 9.9V13l6-3.3v6.6l-6 3.3Z"/></svg>
+                  <span class="panel__kind">GIF · Terrain</span>
+                  <span class="panel__desc">Digging reveals per-voxel materials in real time</span>
+                </div>
+              </figure>
+            </div>
+            <details class="code">
+              <summary>terrain.gdshader — material from vertex data<span class="code__lang">gdshader</span></summary>
+<pre><code data-lang="gdshader">shader_type spatial;
+
+uniform sampler2DArray materials : source_color, filter_linear_mipmap_anisotropic;
+varying flat float mat_id;   // written per vertex by the mesher (CUSTOM0)
+varying vec3 w_pos;
+varying vec3 w_nrm;
+
+void vertex() {
+    mat_id = CUSTOM0.x;
+    w_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    w_nrm = normalize((MODEL_MATRIX * vec4(NORMAL, 0.0)).xyz);
+}
+
+void fragment() {
+    vec3 b = pow(abs(w_nrm), vec3(4.0));
+    b /= b.x + b.y + b.z;   // triplanar weights
+    ALBEDO = texture(materials, vec3(w_pos.zy * 0.25, mat_id)).rgb * b.x
+           + texture(materials, vec3(w_pos.xz * 0.25, mat_id)).rgb * b.y
+           + texture(materials, vec3(w_pos.xy * 0.25, mat_id)).rgb * b.z;
+}</code></pre>
+            </details>
+          </section>
+
+          <section class="case reveal" aria-labelledby="pa-c3">
+            <div class="case__head">
+              <h4 class="case__title" id="pa-c3">Clouds as a camera compositor effect</h4>
+              <div class="tags"><span class="tag tag--own">Own system</span><span class="tag">Experiment</span></div>
+            </div>
+            <div class="case__body">
+              <div class="ps">
+                <div class="ps__item"><span class="ps__label">Problem</span><p>Volumetric-looking skies usually mean extra geometry or heavy fog volumes that fight with the ocean and terrain shading.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A <code>CompositorEffect</code> raymarches clouds on the GPU after transparency, straight into the camera's colour buffer — no scene geometry, toggleable per camera.</p></div>
+              </div>
+              <figure class="panel panel--gif" aria-label="Animated preview placeholder: compositor clouds">
+                <div class="panel__inner">
+                  <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 19a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 9.5a4.75 4.75 0 0 1-.5 9.5H7Z"/></svg>
+                  <span class="panel__kind">GIF · Post-process</span>
+                  <span class="panel__desc">Raymarched clouds drifting over the horizon</span>
+                </div>
+              </figure>
+            </div>
+            <details class="code">
+              <summary>clouds_effect.gd — render callback<span class="code__lang">GDScript 2.0</span></summary>
+<pre><code data-lang="gdscript">@tool
+class_name CloudsEffect
+extends CompositorEffect
+
+func _render_callback(type: int, data: RenderData) -&gt; void:
+    if type != EFFECT_CALLBACK_TYPE_POST_TRANSPARENT:
+        return
+    var buffers := data.get_render_scene_buffers() as RenderSceneBuffersRD
+    var size := buffers.get_internal_size()
+    var groups := Vector3i(ceili(size.x / 8.0), ceili(size.y / 8.0), 1)
+    for view in buffers.get_view_count():
+        var color := buffers.get_color_layer(view)
+        _dispatch_raymarch(color, data.get_render_scene_data(), groups)</code></pre>
+            </details>
+          </section>
+        </div>
+
+        <p class="ownership reveal"><strong>Built:</strong> voxel data model, SDF mesher, material pipeline, compositor effect, profiling. <strong>Adapted:</strong> ocean wave foundations from public shader examples. <strong>AI:</strong> used for maths review and refactoring ideas — integration, debugging and validation are mine.</p>
+
+        <div class="project__links reveal">
+          <a class="link-arrow" aria-disabled="true">Source</a>
+          <a class="link-arrow" aria-disabled="true">Devlog</a>
+        </div>
+      </article>
+
+      <!-- ---------- Project B -->
+      <article class="project" id="project-shooter" aria-labelledby="pb-title">
+        <header class="reveal">
+          <p class="project__index">Project B</p>
+          <h3 class="project__title" id="pb-title">Tactical Shooter</h3>
+          <p class="project__summary">A grounded tactical shooter: COD-style gunfeel, a Tarkov-style grid inventory, physics-based building and a world that changes with weather and time of day.</p>
+          <dl class="meta">
+            <div><dt>Role</dt><dd>Solo · gameplay systems</dd></div>
+            <div><dt>Stack</dt><dd>Godot 4 · GDScript 2.0 · Godot shaders</dd></div>
+            <div><dt>Status</dt><dd>Prototype</dd></div>
+          </dl>
+        </header>
+
+        <div class="project__media reveal">
+          <div class="video" data-yt-id="" data-yt-title="Tactical Shooter — gameplay">
+            <button class="video__btn" type="button">
+              <span class="video__play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.8v12.4L14 8 3 1.8Z"/></svg></span>
+              <span class="video__caption">Gameplay</span>
+            </button>
+          </div>
+        </div>
+
+        <ul class="features reveal" aria-label="Feature set">
+          <li class="feature"><h4>Gunplay</h4><p>Recoil patterns, ADS, spread &amp; weapon sway — COD-inspired feel.</p></li>
+          <li class="feature"><h4>Grid inventory</h4><p>Tarkov-style shaped items, rotation and nested containers.</p></li>
+          <li class="feature"><h4>Rigidbody building</h4><p>Physics-driven placement with snapping and stable stacking.</p></li>
+          <li class="feature"><h4>Weather</h4><p>Rain, wind and fog driving lighting, audio and VFX.</p></li>
+          <li class="feature"><h4>Day / night</h4><p>Continuous sun, sky and ambient cycle.</p></li>
+          <li class="feature"><h4>Screen-space VFX</h4><p>Hits, rain on the lens and suppression feedback as post effects.</p></li>
+        </ul>
+
+        <div class="cases">
+          <section class="case reveal" aria-labelledby="pb-c1">
+            <div class="case__head">
+              <h4 class="case__title" id="pb-c1">Tarkov-style grid inventory</h4>
+              <div class="tags"><span class="tag tag--own">Own system</span></div>
+            </div>
+            <div class="case__body">
+              <div class="ps">
+                <div class="ps__item"><span class="ps__label">Problem</span><p>Items of different shapes, rotation and containers inside containers — naive slot lists can't answer "does this fit here?" quickly enough while dragging.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Each container is a flat occupancy grid. Placement is a bounds check plus a scan of the item's footprint; rotation just swaps width and height, so drag previews stay instant.</p></div>
+              </div>
+              <figure class="panel panel--gif" aria-label="Animated preview placeholder: dragging and rotating inventory items">
+                <div class="panel__inner">
+                  <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 3h8v8H3V3Zm10 0h8v4h-8V3Zm0 6h8v12h-8V9ZM3 13h8v8H3v-8Z"/></svg>
+                  <span class="panel__kind">GIF · UI system</span>
+                  <span class="panel__desc">Drag, rotate and nest items in the grid</span>
+                </div>
+              </figure>
+            </div>
+            <details class="code">
+              <summary>inventory_grid.gd — placement test<span class="code__lang">GDScript 2.0</span></summary>
+<pre><code data-lang="gdscript">func can_place(item: ItemData, cell: Vector2i, rotated: bool) -&gt; bool:
+    var size := Vector2i(item.size.y, item.size.x) if rotated else item.size
+    if cell.x &lt; 0 or cell.y &lt; 0 or cell.x + size.x &gt; width or cell.y + size.y &gt; height:
+        return false
+    for y in size.y:
+        for x in size.x:
+            if _cells[(cell.y + y) * width + cell.x + x] != null:
+                return false
+    return true</code></pre>
+            </details>
+          </section>
+
+          <section class="case reveal" aria-labelledby="pb-c2">
+            <div class="case__head">
+              <h4 class="case__title" id="pb-c2">Rigidbody building system</h4>
+              <div class="tags"><span class="tag tag--own">Own system</span></div>
+            </div>
+            <div class="case__body">
+              <div class="ps">
+                <div class="ps__item"><span class="ps__label">Problem</span><p>Fully simulated building pieces jitter, drift and get expensive once players stack dozens of them.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Pieces snap to sockets and settle as physics bodies, then sleep once at rest. Only disturbed structures wake up — physics where it matters, near-zero cost where it doesn't.</p></div>
+              </div>
+              <figure class="panel panel--gif" aria-label="Animated preview placeholder: building and collapsing a structure">
+                <div class="panel__inner">
+                  <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 17h7v4H3v-4Zm11 0h7v4h-7v-4ZM7 11h10v4H7v-4Zm2-6h6v4H9V5Z"/></svg>
+                  <span class="panel__kind">GIF · Physics</span>
+                  <span class="panel__desc">Snap, stack and knock down a structure</span>
+                </div>
+              </figure>
+            </div>
+          </section>
+        </div>
+
+        <div class="project__links reveal">
+          <a class="link-arrow" aria-disabled="true">Source</a>
+          <a class="link-arrow" aria-disabled="true">Playable build</a>
+        </div>
+      </article>
+
+      <!-- ---------- Project C -->
+      <article class="project" id="project-orbit" aria-labelledby="pc-title">
+        <header class="reveal">
+          <p class="project__index">Project C</p>
+          <h3 class="project__title" id="pc-title">Planetary Rocket Sim &amp; N-Body Physics</h3>
+          <p class="project__summary">A rocket simulation where every body pulls on every other. Three physical planets orbit a sun, and the flight path ahead is predicted by my own integrator — no patched-conics shortcuts.</p>
+          <dl class="meta">
+            <div><dt>Role</dt><dd>Solo · physics &amp; tooling</dd></div>
+            <div><dt>Stack</dt><dd>Godot 4 · GDScript 2.0</dd></div>
+            <div><dt>Status</dt><dd>Prototype</dd></div>
+          </dl>
+        </header>
+
+        <div class="project__media reveal">
+          <div class="video" data-yt-id="" data-yt-title="Planetary Rocket Sim — trajectory prediction">
+            <button class="video__btn" type="button">
+              <span class="video__play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.8v12.4L14 8 3 1.8Z"/></svg></span>
+              <span class="video__caption">Trajectory prediction</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="cases">
+          <section class="case reveal" aria-labelledby="pc-c1">
+            <div class="case__head">
+              <h4 class="case__title" id="pc-c1">Trajectory prediction</h4>
+              <div class="tags"><span class="tag tag--own">Own system</span></div>
+            </div>
+            <div class="case__body">
+              <div class="ps">
+                <div class="ps__item"><span class="ps__label">Problem</span><p>With three planets and a sun all pulling at once there is no closed-form orbit — the player still needs to see where the rocket will go.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A ghost copy of the system is stepped forward with the same fixed-step integrator as the live simulation, so the drawn path and the real flight agree.</p></div>
+              </div>
+              <figure class="panel panel--gif" aria-label="Animated preview placeholder: predicted orbit line updating during a burn">
+                <div class="panel__inner">
+                  <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0-7C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2Zm0 2a8 8 0 0 1 7.9 6.7l-2 .3A6 6 0 0 0 12 6V4Z"/></svg>
+                  <span class="panel__kind">GIF · Simulation</span>
+                  <span class="panel__desc">Predicted path reshaping live during a burn</span>
+                </div>
+              </figure>
+            </div>
+            <details class="code">
+              <summary>trajectory.gd — prediction loop<span class="code__lang">GDScript 2.0</span></summary>
+<pre><code data-lang="gdscript">func predict(start: BodyState, steps: int, dt: float) -&gt; PackedVector3Array:
+    var points := PackedVector3Array()
+    points.resize(steps)
+    var sim := _world.duplicate_state()   # ghost copy: planets move too
+    var p := start.position
+    var v := start.velocity
+    for i in steps:
+        var a := sim.gravity_at(p)
+        v += a * dt                       # same integrator as the live sim
+        p += v * dt
+        sim.step(dt)
+        points[i] = p
+    return points</code></pre>
+            </details>
+          </section>
+
+          <section class="case reveal" aria-labelledby="pc-c2">
+            <div class="case__head">
+              <h4 class="case__title" id="pc-c2">Stress test: launch from the sun</h4>
+              <div class="tags"><span class="tag">Testing</span></div>
+            </div>
+            <div class="case__body">
+              <div class="ps">
+                <div class="ps__item"><span class="ps__label">Problem</span><p>Normal launches hide integrator errors — gravity is gentle and steps are small compared to the forces involved.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Starting on the sun's surface is the worst case: extreme gravity, huge velocities. If prediction and live flight still agree there, they agree everywhere.</p></div>
+              </div>
+              <figure class="panel panel--gif" aria-label="Animated preview placeholder: rocket escaping from the sun">
+                <div class="panel__inner">
+                  <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10ZM11 1h2v3h-2V1Zm0 19h2v3h-2v-3ZM1 11h3v2H1v-2Zm19 0h3v2h-3v-2ZM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4-2.1-2.1Zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4-2.1-2.1ZM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1-1.4-1.4ZM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1-1.4-1.4Z"/></svg>
+                  <span class="panel__kind">GIF · Edge case</span>
+                  <span class="panel__desc">Escape burn from the solar surface</span>
+                </div>
+              </figure>
+            </div>
+          </section>
+        </div>
+
+        <div class="project__links reveal">
+          <a class="link-arrow" aria-disabled="true">Source</a>
+          <a class="link-arrow" aria-disabled="true">Playable build</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===================================================== 3. 3D MODELS -->
+    <section class="section wrap" id="models" aria-labelledby="models-title">
+      <header class="section-head reveal">
+        <p class="label">02 — 3D</p>
+        <h2 class="section-title" id="models-title">Vehicles, modelled in Blender</h2>
+        <p class="section-intro">Hard-surface studies built for real-time use: clean topology, believable proportions, materials that hold up close.</p>
+      </header>
+
+      <div class="vehicles">
+        <article class="vehicle reveal" aria-labelledby="v1-title">
+          <div class="vehicle__head">
+            <h3 class="vehicle__title" id="v1-title">Ferrari 812 Superfast</h3>
+            <p class="vehicle__sub">Blender · hard surface</p>
+          </div>
+          <div class="gallery">
+            <figure class="panel panel--img" aria-label="Image placeholder: Ferrari 812 Superfast hero render">
+              <div class="panel__inner">
+                <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm1 2v10.6l4-4 3 3 3.5-3.5L19 15.6V6H5Zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/></svg>
+                <span class="panel__kind">Image · Hero render</span>
+                <span class="panel__desc">Three-quarter front, studio lighting</span>
+              </div>
+            </figure>
+            <div class="gallery__row">
+              <figure class="panel panel--img panel--square" aria-label="Image placeholder: wireframe"><div class="panel__inner"><span class="panel__kind">Wireframe</span></div></figure>
+              <figure class="panel panel--img panel--square" aria-label="Image placeholder: detail shot"><div class="panel__inner"><span class="panel__kind">Detail</span></div></figure>
+              <figure class="panel panel--img panel--square" aria-label="Image placeholder: rear view"><div class="panel__inner"><span class="panel__kind">Rear</span></div></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="vehicle reveal" aria-labelledby="v2-title">
+          <div class="vehicle__head">
+            <h3 class="vehicle__title" id="v2-title">BMW E36</h3>
+            <p class="vehicle__sub">Blender · hard surface</p>
+          </div>
+          <div class="gallery">
+            <figure class="panel panel--img" aria-label="Image placeholder: BMW E36 hero render">
+              <div class="panel__inner">
+                <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm1 2v10.6l4-4 3 3 3.5-3.5L19 15.6V6H5Zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/></svg>
+                <span class="panel__kind">Image · Hero render</span>
+                <span class="panel__desc">Low side profile, evening light</span>
+              </div>
+            </figure>
+            <div class="gallery__row">
+              <figure class="panel panel--img panel--square" aria-label="Image placeholder: wireframe"><div class="panel__inner"><span class="panel__kind">Wireframe</span></div></figure>
+              <figure class="panel panel--img panel--square" aria-label="Image placeholder: interior"><div class="panel__inner"><span class="panel__kind">Interior</span></div></figure>
+              <figure class="panel panel--img panel--square" aria-label="Image placeholder: rear view"><div class="panel__inner"><span class="panel__kind">Rear</span></div></figure>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================================================== 4. AUDIO -->
+    <section class="section wrap" id="audio" aria-labelledby="audio-title">
+      <header class="section-head reveal">
+        <p class="label">03 — Audio</p>
+        <h2 class="section-title" id="audio-title">Music &amp; sound</h2>
+        <p class="section-intro">I write the music for my own projects. Themes, loops and ambiences — composed, produced and mixed myself.</p>
+      </header>
+
+      <!-- To add a track: copy an <li>, set data-src (file in assets/audio/), title, context and duration. -->
+      <div class="player reveal" data-player>
+        <div class="player__now">
+          <button class="player__play" type="button" data-action="toggle" aria-label="Play">
+            <svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 1.8v12.4L14 8 3.5 1.8Z"/></svg>
+            <svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2h3.5v12H3V2Zm6.5 0H13v12H9.5V2Z"/></svg>
+          </button>
+          <div class="player__meta">
+            <p class="player__title" data-title>Ocean World — Main Theme</p>
+            <p class="player__ctx" data-ctx>Project A · Score</p>
+          </div>
+        </div>
+
+        <div class="player__bar">
+          <span class="player__time" data-current>0:00</span>
+          <input class="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek" data-seek disabled>
+          <span class="player__time player__time--end" data-duration>0:00</span>
+          <button class="icon-btn" type="button" data-action="prev" aria-label="Previous track"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2h2v12H3V2Zm2.5 6L13 2.5v11L5.5 8Z"/></svg></button>
+          <button class="icon-btn" type="button" data-action="next" aria-label="Next track"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11 2h2v12h-2V2ZM10.5 8 3 13.5v-11L10.5 8Z"/></svg></button>
+        </div>
+
+        <p class="player__status" role="status" aria-live="polite" data-status></p>
+
+        <ol class="tracks" aria-label="Track list">
+          <li class="track" data-src="assets/audio/track-01.mp3" data-title="Ocean World — Main Theme" data-ctx="Project A · Score">
+            <button class="track__btn" type="button"><span class="track__no">01<span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span><span class="track__title">Ocean World — Main Theme</span><span class="track__ctx">Project A · Score</span></span><span class="track__dur">3:12</span></button>
+          </li>
+          <li class="track" data-src="assets/audio/track-02.mp3" data-title="Undertow" data-ctx="Project A · Ambient loop">
+            <button class="track__btn" type="button"><span class="track__no">02<span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span><span class="track__title">Undertow</span><span class="track__ctx">Project A · Ambient loop</span></span><span class="track__dur">2:40</span></button>
+          </li>
+          <li class="track" data-src="assets/audio/track-03.mp3" data-title="Breach" data-ctx="Project B · Combat">
+            <button class="track__btn" type="button"><span class="track__no">03<span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span><span class="track__title">Breach</span><span class="track__ctx">Project B · Combat</span></span><span class="track__dur">2:58</span></button>
+          </li>
+          <li class="track" data-src="assets/audio/track-04.mp3" data-title="Escape Velocity" data-ctx="Project C · Main theme">
+            <button class="track__btn" type="button"><span class="track__no">04<span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span><span class="track__title">Escape Velocity</span><span class="track__ctx">Project C · Main theme</span></span><span class="track__dur">3:34</span></button>
+          </li>
+        </ol>
+
+        <audio preload="none" data-audio></audio>
+      </div>
+      <p class="audio-note reveal">Files live in <code>assets/audio/</code>.</p>
+    </section>
+
+    <!-- ===================================================== 5. BIO -->
+    <section class="section wrap" id="about" aria-labelledby="about-title">
+      <header class="section-head reveal">
+        <p class="label">04 — About</p>
+        <h2 class="section-title" id="about-title">One person, the whole stack</h2>
+      </header>
+      <div class="prose reveal">
+        <p>I'm a game developer who likes the parts most people treat as black boxes: how terrain becomes triangles, how a wave becomes a normal, how three planets decide where a rocket ends up.</p>
+        <p>I work in Godot&nbsp;4 with GDScript&nbsp;2.0, and I care about the frame budget as much as the feel. When a system is done, I model the assets for it in Blender and write the music that plays over it.</p>
+      </div>
+      <dl class="facts reveal">
+        <div><dt>Engine</dt><dd>Godot 4</dd></div>
+        <div><dt>Languages</dt><dd>GDScript 2.0 · Godot Shading Language</dd></div>
+        <div><dt>Tools</dt><dd>Blender · DAW · Git</dd></div>
+        <div><dt>Based in</dt><dd>Germany</dd></div>
+      </dl>
+    </section>
+
+    <!-- ===================================================== 6. CONTACT -->
+    <section class="section wrap" id="contact" aria-labelledby="contact-title">
+      <header class="section-head reveal">
+        <p class="label">05 — Contact</p>
+        <h2 class="section-title" id="contact-title">Let's build something that runs well and feels right.</h2>
+      </header>
+      <div class="reveal">
+        <a class="contact__mail" href="mailto:hello@example.com">hello@example.com</a>
+        <nav class="contact__links" aria-label="Profiles">
+          <a href="https://github.com/WasgehtSiedasan2205" rel="me noopener" target="_blank"><span>GitHub</span><span>@WasgehtSiedasan2205</span></a>
+          <a href="https://www.linkedin.com/in/your-handle" rel="me noopener" target="_blank"><span>LinkedIn</span><span>/in/your-handle</span></a>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© <span data-year>2026</span> Your Name</span>
+      <span>Hand-built · No frameworks</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
