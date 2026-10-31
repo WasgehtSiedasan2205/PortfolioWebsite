@@ -3,8 +3,8 @@
    Portfolio — styles.css
    Plain CSS, no build step. Sections:
    1. Tokens  2. Base  3. Layout  4. Nav  5. Hero  6. Section headings
-   7. Projects  8. Media panels  10. Vehicles  11. Audio
-   12. Bio / Contact / Footer  13. Motion  14. Utilities
+   7. Projects  8. Media panels  9. Vehicles  10. Audio
+   11. Bio / Contact / Footer  12. Motion  13. Utilities
    ========================================================================== */
 
 /* 1. Tokens ---------------------------------------------------------------- */
@@ -229,10 +229,8 @@ main:focus { outline: none; }
 @media (max-width: 30rem) {
   .nav__brand { display: none; }
   .nav__links { width: 100%; justify-content: space-between; }
-  .nav__links a { padding: 0 0.25rem; letter-spacing: 0.04em; }
-  .nav__links a:first-child { padding-left: 0; }
-  .nav__links a:first-child::before { left: calc(50% - 0.125rem); }
-  .nav__links a:last-child::before { left: calc(50% + 0.125rem); }
+  .nav__links a { flex: 1 1 0; justify-content: center; min-width: 2.75rem; padding: 0; letter-spacing: 0.04em; }
+  .nav__links a:last-child::before { left: 50%; }
 }
 
 /* 5. Hero ------------------------------------------------------------------ */
@@ -481,10 +479,12 @@ main:focus { outline: none; }
 .ps__item--solution .ps__label { color: var(--fg-2); }
 .ps__item p { margin-top: 0.45rem; font-size: var(--text-md); line-height: 1.6; }
 .ps__item--solution p { color: var(--fg); }
+.ps__keys { color: var(--fg-3); font-size: var(--text-xs); line-height: 1.55; }
+.ps__keys span { display: block; margin-bottom: 0.2rem; color: var(--fg-3); font: var(--label-sm); letter-spacing: var(--label-track); text-transform: uppercase; }
 
 @container (min-width: 34rem) {
   .case__body { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.75rem; align-items: start; }
-  .case__body .panel { position: sticky; top: calc(var(--nav-h) + env(safe-area-inset-top) + 1.5rem); }
+  .case__body .panel { aspect-ratio: 4 / 3; position: sticky; top: calc(var(--nav-h) + env(safe-area-inset-top) + 1.5rem); }
 }
 
 
@@ -537,32 +537,40 @@ main:focus { outline: none; }
 .project__links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 1.75rem;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
   margin-top: 2rem;
-  font-size: var(--text-sm);
+  font-size: var(--text-md);
 }
 .link-arrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.55rem;
   min-height: 2.75rem;
   color: var(--fg);
+  font-weight: 500;
   text-decoration: none;
 }
-.link-arrow::after { content: "\2197"; color: var(--fg-3); transition: transform 0.3s var(--ease-out), color 0.3s; }
+a.link-arrow {
+  padding: 0 1.05rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.03);
+  transition: border-color 0.25s, background-color 0.25s;
+}
+a.link-arrow:hover { border-color: var(--fg-2); background: rgb(255 255 255 / 0.06); }
+a.link-arrow svg { width: 1rem; height: 1rem; fill: currentColor; flex: none; }
+a.link-arrow::after { content: "\2197"; color: var(--fg-3); transition: transform 0.3s var(--ease-out), color 0.3s; }
 a.link-arrow:hover::after { color: var(--fg); }
-.link-arrow--soon { color: var(--fg-4); }
-.link-arrow--soon::after {
-  content: "soon";
+.link-arrow--soon { color: var(--fg-4); font-weight: 400; }
+.link-arrow__badge {
   padding: 0.1rem 0.4rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  color: var(--fg-4);
   font: var(--label-sm);
   letter-spacing: var(--label-track);
   text-transform: uppercase;
 }
-
 /* 8. Media panels ---------------------------------------------------------- */
 .panel {
   position: relative;
@@ -694,7 +702,7 @@ a.link-arrow:hover::after { color: var(--fg); }
 .video:not(.is-pending) .video__soon { display: none; }
 .video__btn:focus-visible { outline-offset: -4px; border-radius: calc(var(--radius) - 1px); }
 
-/* 10. Vehicles ------------------------------------------------------------- */
+/* 9. Vehicles ------------------------------------------------------------- */
 .vehicles { display: grid; gap: clamp(3.5rem, 3rem + 2vw, 4.5rem); }
 
 .vehicle__head {
@@ -711,7 +719,7 @@ a.link-arrow:hover::after { color: var(--fg); }
 .gallery { display: grid; gap: 0.75rem; }
 .gallery__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
 
-/* 11. Audio ---------------------------------------------------------------- */
+/* 10. Audio ---------------------------------------------------------------- */
 .player {
   border: 1px solid var(--line);
   border-radius: calc(var(--radius) * 1.5);
@@ -937,7 +945,7 @@ a.link-arrow:hover::after { color: var(--fg); }
   .track__btn { padding-inline: 1rem; }
 }
 
-/* 12. Bio / Contact / Footer ----------------------------------------------- */
+/* 11. Bio / Contact / Footer ----------------------------------------------- */
 .facts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
@@ -986,7 +994,7 @@ a.link-arrow:hover::after { color: var(--fg); }
 
 .contact__coda {
   max-width: 14ch;
-  margin-top: clamp(5rem, 4rem + 4vw, 8rem);
+  margin-top: clamp(4rem, 3.5rem + 2vw, 6rem);
   color: var(--fg);
   font-size: var(--step-2);
   font-weight: 600;
@@ -1036,7 +1044,7 @@ a.link-arrow:hover::after { color: var(--fg); }
   .hero__layout { grid-template-columns: clamp(9rem, 22vw, 11rem) minmax(0, 1fr); align-items: start; }
 }
 
-/* 13. Motion --------------------------------------------------------------- */
+/* 12. Motion --------------------------------------------------------------- */
 /* Reveal hides content only when JS is confirmed running (html.js). */
 .js .reveal {
   opacity: 0;
@@ -1092,7 +1100,7 @@ a.link-arrow:hover::after { color: var(--fg); }
   .js .reveal { opacity: 1; transform: none; }
 }
 
-/* 14. Utilities ------------------------------------------------------------ */
+/* 13. Utilities ------------------------------------------------------------ */
 .visually-hidden {
   position: absolute !important;
   width: 1px;

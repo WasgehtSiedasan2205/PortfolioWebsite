@@ -416,6 +416,8 @@
   // Real images/videos inside placeholder panels fade in once loaded; on failure the placeholder stays.
   // Looping preview videos (GIF replacements) only play while visible and never under reduced motion.
   function initPanelMedia() {
+    const items = $$(".panel > img, .panel > picture > img, .panel > video");
+    if (!items.length) return;
     const videoIO = hasIO ? new IntersectionObserver((entries) => {
       for (const { target, isIntersecting } of entries) {
         if (isIntersecting && !reducedMotion.matches) target.play().catch(() => {});
@@ -423,7 +425,7 @@
       }
     }, { threshold: 0.25 }) : null;
 
-    $$(".panel > img, .panel > picture > img, .panel > video").forEach((media) => {
+    items.forEach((media) => {
       const panel = media.closest(".panel");
       const loaded = () => panel.classList.add("is-loaded");
       const failed = () => {

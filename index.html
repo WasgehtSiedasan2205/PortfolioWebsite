@@ -20,9 +20,9 @@
   <meta property="og:image:alt" content="Your Name — Game Developer & Systems Architect"> -->
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/css/styles.css?v=5">
+  <link rel="stylesheet" href="assets/css/styles.css?v=6">
   <script>document.documentElement.classList.add("js");</script>
-  <script src="assets/js/main.js?v=5" defer></script>
+  <script src="assets/js/main.js?v=6" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -148,6 +148,7 @@
               <div class="ps">
                 <div class="ps__item"><span class="ps__label">Problem</span><p>The reference ocean shaders I found used incompatible wave conventions for displacement and surface orientation — hard to tune, harder to extend.</p></div>
                 <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Consolidated them into one shared Gerstner wave function, with my own wave logic and AI as a sparring partner for the math. Each call returns displacement and accumulates the derivatives for the normal; four waves are summed in the vertex stage.</p></div>
+                <p class="ps__keys"><span>Key techniques</span> Shared Gerstner parameterization · analytic derivatives · four-wave vertex displacement · normal checks at grazing angles</p>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: ocean waves and foam">
                 <div class="panel__inner">
@@ -168,7 +169,8 @@
               <div class="ps">
                 <div class="ps__item"><span class="ps__label">Problem</span><p>An SDF encodes distance to a surface, not what it's made of. Separate meshes per material multiply draw calls — and digging still has to reveal the right material underneath.</p></div>
                 <!-- TODO(owner): add chunk size, meshing thread (e.g. WorkerThreadPool) and remesh time per edit. -->
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A parallel voxel grid stores material IDs. For every emitted triangle, the mesher repeats one ID across the CUSTOM0 values of all three vertices; a flat varying then selects a layer of a single Texture2DArray — one material, one draw call per chunk.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A parallel voxel grid stores material IDs. For every emitted triangle, the mesher repeats one ID across the CUSTOM0 values of all three vertices; a flat varying then selects among the layers of one Texture2DArray — one shared material and one draw call per chunk.</p></div>
+                <p class="ps__keys"><span>Key techniques</span> SDF meshing · parallel voxel material grid · per-triangle IDs in CUSTOM0 · Texture2DArray · triplanar mapping</p>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: digging reveals voxel materials">
                 <div class="panel__inner">
@@ -205,8 +207,9 @@
 
         <div class="project__links reveal">
           <!-- TODO(owner): replace href with the project's repository URL -->
-          <a class="link-arrow" href="https://github.com/WasgehtSiedasan2205?tab=repositories" rel="noopener" target="_blank">GitHub repository<span class="visually-hidden"> (opens in a new tab)</span></a>
-          <a class="link-arrow" href="https://github.com/WasgehtSiedasan2205/VolumetricClouds" rel="noopener" target="_blank">Clouds repository<span class="visually-hidden"> (opens in a new tab)</span></a>
+          <a class="link-arrow" href="https://github.com/WasgehtSiedasan2205?tab=repositories" rel="noopener" target="_blank"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg>GitHub repository<span class="visually-hidden"> (opens in a new tab)</span></a>
+          <a class="link-arrow" href="https://github.com/WasgehtSiedasan2205/VolumetricClouds" rel="noopener" target="_blank"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg>Volumetric clouds repository<span class="visually-hidden"> (opens in a new tab)</span></a>
+          <span class="link-arrow link-arrow--soon">Playable build <span class="link-arrow__badge">soon</span></span>
         </div>
       </article>
 
@@ -251,6 +254,7 @@
               <div class="ps">
                 <div class="ps__item"><span class="ps__label">Problem</span><p>Shaped items, rotation, and containers inside containers: placement has to reject overlaps and out-of-bounds drops consistently — live, while dragging.</p></div>
                 <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Each container owns a flat occupancy grid. Placement bounds-checks the rotated footprint, then scans only the cells it covers; nested containers keep independent grids.</p></div>
+                <p class="ps__keys"><span>Key techniques</span> Flat occupancy grid · canonical rotated footprints · validate-before-commit placement · nested container grids</p>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: dragging and rotating inventory items">
                 <div class="panel__inner">
@@ -285,8 +289,8 @@
 
         <div class="project__links reveal">
           <!-- TODO(owner): replace href with the project's repository URL -->
-          <a class="link-arrow" href="https://github.com/WasgehtSiedasan2205?tab=repositories" rel="noopener" target="_blank">GitHub repository<span class="visually-hidden"> (opens in a new tab)</span></a>
-          <span class="link-arrow link-arrow--soon">Playable build</span>
+          <a class="link-arrow" href="https://github.com/WasgehtSiedasan2205?tab=repositories" rel="noopener" target="_blank"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg>GitHub repository<span class="visually-hidden"> (opens in a new tab)</span></a>
+          <span class="link-arrow link-arrow--soon">Playable build <span class="link-arrow__badge">soon</span></span>
         </div>
       </article>
 
@@ -356,8 +360,8 @@
 
         <div class="project__links reveal">
           <!-- TODO(owner): replace href with the project's repository URL -->
-          <a class="link-arrow" href="https://github.com/WasgehtSiedasan2205?tab=repositories" rel="noopener" target="_blank">GitHub repository<span class="visually-hidden"> (opens in a new tab)</span></a>
-          <span class="link-arrow link-arrow--soon">Playable build</span>
+          <a class="link-arrow" href="https://github.com/WasgehtSiedasan2205?tab=repositories" rel="noopener" target="_blank"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg>GitHub repository<span class="visually-hidden"> (opens in a new tab)</span></a>
+          <span class="link-arrow link-arrow--soon">Playable build <span class="link-arrow__badge">soon</span></span>
         </div>
       </article>
     </section>
