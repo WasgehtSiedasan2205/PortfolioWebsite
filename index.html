@@ -36,39 +36,41 @@
     <!-- ===================================================== 1. HERO -->
     <section class="hero wrap" aria-labelledby="hero-name">
       <div class="hero__grid">
-        <!-- Replace the panel with:
-             <img src="assets/img/portrait.jpg" width="800" height="1000" alt="Portrait of Your Name" fetchpriority="high" decoding="async"> -->
-        <figure class="hero__portrait">
-          <div class="panel panel--img panel--portrait" role="img" aria-label="Portrait placeholder">
-            <div class="panel__inner">
-              <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5Z"/></svg>
-              <span class="panel__kind">Image · Portrait</span>
+        <div class="hero__layout">
+          <!-- Replace the panel with:
+               <img src="assets/img/portrait.jpg" width="800" height="1000" alt="Portrait of Your Name" fetchpriority="high" decoding="async"> -->
+          <figure class="hero__portrait hero__intro hero__intro--fade">
+            <div class="panel panel--img panel--portrait" role="img" aria-label="Portrait placeholder">
+              <div class="panel__inner">
+                <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5Z"/></svg>
+                <span class="panel__kind">Portrait</span>
+              </div>
+            </div>
+          </figure>
+
+          <div class="hero__text">
+            <p class="status hero__intro hero__intro--fade" style="--i:1"><span class="status__dot" aria-hidden="true"></span>Open to roles · Germany · Remote EU</p>
+            <h1 class="hero__name hero__intro" id="hero-name" style="--i:2">Your Name</h1>
+            <p class="hero__headline hero__intro" style="--i:3">Game developer &amp; systems architect. I build the systems a world runs on — and how it looks, plays and sounds.</p>
+            <p class="hero__lede hero__intro hero__intro--fade" style="--i:4">Godot&nbsp;4 and GDScript&nbsp;2.0: voxel/SDF terrain, custom shaders, N-body physics and tactical gameplay — built, profiled and tuned as one coherent whole. Plus the 3D models and the music.</p>
+
+            <ul class="disciplines hero__intro hero__intro--fade" style="--i:5" aria-label="Disciplines">
+              <li>Graphics</li>
+              <li>Gameplay</li>
+              <li>Optimization</li>
+              <li>Sound</li>
+              <li>Design</li>
+            </ul>
+
+            <div class="actions hero__intro hero__intro--fade" style="--i:6">
+              <a class="btn btn--solid" href="#work">Selected work
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.25 2h1.5v8.6l3.2-3.2 1.05 1.06L8 13.5 2.99 8.46 4.05 7.4l3.2 3.2V2Z"/></svg>
+              </a>
+              <a class="btn" href="https://github.com/WasgehtSiedasan2205" rel="me noopener" target="_blank">GitHub</a>
+              <a class="btn" href="#contact">Contact</a>
             </div>
           </div>
-        </figure>
-
-        <div class="hero__text">
-          <p class="status reveal" style="--i:0"><span class="status__dot" aria-hidden="true"></span>Open to roles · Remote / EU</p>
-          <h1 class="hero__name reveal" id="hero-name" style="--i:1">Your Name</h1>
-          <p class="hero__headline reveal" style="--i:2">Game developer &amp; systems architect. I build the engine layer, the world on top of it — and the sound it makes.</p>
         </div>
-      </div>
-
-      <p class="hero__lede reveal" style="--i:3">Godot&nbsp;4 and GDScript&nbsp;2.0 from the render pipeline up: voxel/SDF terrain, custom shaders, N-body physics and tactical gameplay systems — profiled, measured and shipped as one coherent whole. Plus the 3D models and the music.</p>
-
-      <ul class="disciplines reveal" style="--i:4" aria-label="Disciplines">
-        <li>Graphics</li>
-        <li>Gameplay</li>
-        <li>Optimization</li>
-        <li>Sound</li>
-        <li>Design</li>
-      </ul>
-
-      <div class="actions reveal" style="--i:5">
-        <a class="btn btn--solid" href="#work">Selected work
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.25 2h1.5v8.6l3.2-3.2 1.05 1.06L8 13.5 2.99 8.46 4.05 7.4l3.2 3.2V2Z"/></svg>
-        </a>
-        <a class="btn" href="#contact">Get in touch</a>
       </div>
     </section>
 
@@ -103,11 +105,11 @@
         </div>
 
         <!-- Fill in real numbers: remove data-todo once measured. -->
-        <div class="metrics reveal" role="list">
-          <div class="metric" role="listitem"><span class="metric__value" data-todo>— → —</span><span class="metric__label">Terrain draw calls per chunk</span></div>
-          <div class="metric" role="listitem"><span class="metric__value" data-todo>— ms</span><span class="metric__label">GPU frame time, ocean + terrain</span></div>
-          <div class="metric" role="listitem"><span class="metric__value" data-todo>—</span><span class="metric__label">Materials in one Texture2DArray</span></div>
-        </div>
+        <ul class="metrics reveal" aria-label="Key measurements">
+          <li class="metric"><span class="metric__value" data-todo>— → —</span><span class="metric__label">Terrain draw calls per chunk</span></li>
+          <li class="metric"><span class="metric__value" data-todo>— ms</span><span class="metric__label">GPU frame time, ocean + terrain</span></li>
+          <li class="metric"><span class="metric__value" data-todo>—</span><span class="metric__label">Materials in one Texture2DArray</span></li>
+        </ul>
 
         <div class="cases">
           <section class="case reveal" aria-labelledby="pa-c1">
@@ -117,19 +119,19 @@
             </div>
             <div class="case__body">
               <div class="ps">
-                <div class="ps__item"><span class="ps__label">Problem</span><p>Good ocean techniques exist online, but as disconnected fragments — different conventions, redundant passes, no shared wave model.</p></div>
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Merged the useful parts into one Gerstner-based shader with my own wave logic, using AI as a sparring partner to unify the maths. Waves, normals and foam now come from a single evaluation per vertex.</p></div>
+                <div class="ps__item"><span class="ps__label">Problem</span><p>The reference ocean shaders I found used incompatible wave conventions for displacement and surface orientation — hard to tune, harder to extend.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Consolidated them into one shared Gerstner wave function, with my own wave logic and AI as a sparring partner for the maths. Each call returns displacement and accumulates the derivatives for the normal; four waves are summed in the vertex stage.</p></div>
               </div>
-              <figure class="panel panel--gif" aria-label="Animated preview placeholder: ocean waves and foam">
+              <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: ocean waves and foam">
                 <div class="panel__inner">
                   <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 15c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2v2c-2.5 0-2.5-2-5-2s-2.5 2-5 2-2.5-2-5-2-2.5 2-5 2v-2Zm0-5c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2v2c-2.5 0-2.5-2-5-2s-2.5 2-5 2-2.5-2-5-2-2.5 2-5 2v-2Z"/></svg>
                   <span class="panel__kind">GIF · Shader</span>
-                  <span class="panel__desc">Wave motion, normals &amp; foam at grazing angles</span>
+                  <span class="panel__desc">Wave motion and normals at grazing angles</span>
                 </div>
               </figure>
             </div>
             <details class="code">
-              <summary>ocean.gdshader — Gerstner wave<span class="code__lang">gdshader</span></summary>
+              <summary><span class="code__file">ocean.gdshader — Gerstner wave</span><span class="code__lang">gdshader</span></summary>
 <pre><code data-lang="gdshader">// One wave: dir.xy, steepness, wavelength. Summed 4x in vertex().
 vec3 gerstner(vec4 wave, vec3 p, inout vec3 tangent, inout vec3 binormal) {
     float k = TAU / wave.w;
@@ -151,10 +153,10 @@ vec3 gerstner(vec4 wave, vec3 p, inout vec3 tangent, inout vec3 binormal) {
             </div>
             <div class="case__body">
               <div class="ps">
-                <div class="ps__item"><span class="ps__label">Problem</span><p>Smooth SDF terrain has no notion of material. Splitting chunks by material multiplies meshes and draw calls, and digging needs to reveal the right colour underneath.</p></div>
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A voxel grid stores material IDs beneath the SDF. The mesher writes each vertex's material into a custom vertex channel; the shader samples one Texture2DArray by that index — one material, one draw call per chunk.</p></div>
+                <div class="ps__item"><span class="ps__label">Problem</span><p>An SDF encodes distance to a surface, not what it's made of. Separate meshes per material multiply draw calls — and digging still has to reveal the right material underneath.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A parallel voxel grid stores material IDs. The mesher writes one ID per triangle into <code>CUSTOM0</code>; a flat varying picks the layer of a single Texture2DArray — one material, one draw call per chunk.</p></div>
               </div>
-              <figure class="panel panel--gif" aria-label="Animated preview placeholder: digging reveals voxel materials">
+              <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: digging reveals voxel materials">
                 <div class="panel__inner">
                   <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 3 7v10l9 5 9-5V7l-9-5Zm0 2.3 6.7 3.7L12 11.7 5.3 8 12 4.3ZM5 9.7l6 3.3v6.6l-6-3.3V9.7Zm8 9.9V13l6-3.3v6.6l-6 3.3Z"/></svg>
                   <span class="panel__kind">GIF · Terrain</span>
@@ -163,18 +165,18 @@ vec3 gerstner(vec4 wave, vec3 p, inout vec3 tangent, inout vec3 binormal) {
               </figure>
             </div>
             <details class="code">
-              <summary>terrain.gdshader — material from vertex data<span class="code__lang">gdshader</span></summary>
+              <summary><span class="code__file">terrain.gdshader — material from vertex data</span><span class="code__lang">gdshader</span></summary>
 <pre><code data-lang="gdshader">shader_type spatial;
 
 uniform sampler2DArray materials : source_color, filter_linear_mipmap_anisotropic;
-varying flat float mat_id;   // written per vertex by the mesher (CUSTOM0)
+varying flat float mat_id;   // one material per triangle, written by the mesher
 varying vec3 w_pos;
 varying vec3 w_nrm;
 
 void vertex() {
     mat_id = CUSTOM0.x;
     w_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-    w_nrm = normalize((MODEL_MATRIX * vec4(NORMAL, 0.0)).xyz);
+    w_nrm = normalize(MODEL_NORMAL_MATRIX * NORMAL);
 }
 
 void fragment() {
@@ -197,7 +199,7 @@ void fragment() {
                 <div class="ps__item"><span class="ps__label">Problem</span><p>Volumetric-looking skies usually mean extra geometry or heavy fog volumes that fight with the ocean and terrain shading.</p></div>
                 <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A <code>CompositorEffect</code> raymarches clouds on the GPU after transparency, straight into the camera's colour buffer — no scene geometry, toggleable per camera.</p></div>
               </div>
-              <figure class="panel panel--gif" aria-label="Animated preview placeholder: compositor clouds">
+              <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: compositor clouds">
                 <div class="panel__inner">
                   <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 19a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 9.5a4.75 4.75 0 0 1-.5 9.5H7Z"/></svg>
                   <span class="panel__kind">GIF · Post-process</span>
@@ -206,7 +208,7 @@ void fragment() {
               </figure>
             </div>
             <details class="code">
-              <summary>clouds_effect.gd — render callback<span class="code__lang">GDScript 2.0</span></summary>
+              <summary><span class="code__file">clouds_effect.gd — render callback</span><span class="code__lang">GDScript 2.0</span></summary>
 <pre><code data-lang="gdscript">@tool
 class_name CloudsEffect
 extends CompositorEffect
@@ -227,8 +229,8 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         <p class="ownership reveal"><strong>Built:</strong> voxel data model, SDF mesher, material pipeline, compositor effect, profiling. <strong>Adapted:</strong> ocean wave foundations from public shader examples. <strong>AI:</strong> used for maths review and refactoring ideas — integration, debugging and validation are mine.</p>
 
         <div class="project__links reveal">
-          <a class="link-arrow" aria-disabled="true">Source</a>
-          <a class="link-arrow" aria-disabled="true">Devlog</a>
+          <span class="link-arrow link-arrow--soon">Source</span>
+          <span class="link-arrow link-arrow--soon">Devlog</span>
         </div>
       </article>
 
@@ -237,7 +239,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         <header class="reveal">
           <p class="project__index">Project B</p>
           <h3 class="project__title" id="pb-title">Tactical Shooter</h3>
-          <p class="project__summary">A grounded tactical shooter: COD-style gunfeel, a Tarkov-style grid inventory, physics-based building and a world that changes with weather and time of day.</p>
+          <p class="project__summary">A grounded tactical shooter prototype: COD-inspired weapon handling, a Tarkov-style grid inventory, physics-based building, and weather and time-of-day systems that drive lighting, VFX and audio together.</p>
           <dl class="meta">
             <div><dt>Role</dt><dd>Solo · gameplay systems</dd></div>
             <div><dt>Stack</dt><dd>Godot 4 · GDScript 2.0 · Godot shaders</dd></div>
@@ -255,7 +257,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         </div>
 
         <ul class="features reveal" aria-label="Feature set">
-          <li class="feature"><h4>Gunplay</h4><p>Recoil patterns, ADS, spread &amp; weapon sway — COD-inspired feel.</p></li>
+          <li class="feature"><h4>Gunplay</h4><p>Recoil curves, ADS transitions, spread and sway tuned as one handling model.</p></li>
           <li class="feature"><h4>Grid inventory</h4><p>Tarkov-style shaped items, rotation and nested containers.</p></li>
           <li class="feature"><h4>Rigidbody building</h4><p>Physics-driven placement with snapping and stable stacking.</p></li>
           <li class="feature"><h4>Weather</h4><p>Rain, wind and fog driving lighting, audio and VFX.</p></li>
@@ -271,10 +273,10 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
             </div>
             <div class="case__body">
               <div class="ps">
-                <div class="ps__item"><span class="ps__label">Problem</span><p>Items of different shapes, rotation and containers inside containers — naive slot lists can't answer "does this fit here?" quickly enough while dragging.</p></div>
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Each container is a flat occupancy grid. Placement is a bounds check plus a scan of the item's footprint; rotation just swaps width and height, so drag previews stay instant.</p></div>
+                <div class="ps__item"><span class="ps__label">Problem</span><p>Shaped items, rotation and containers inside containers: placement has to reject overlaps and out-of-bounds drops consistently — live, while dragging.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Each container owns a flat occupancy grid. Placement bounds-checks the rotated footprint, then scans only the cells it covers; nested containers keep independent grids.</p></div>
               </div>
-              <figure class="panel panel--gif" aria-label="Animated preview placeholder: dragging and rotating inventory items">
+              <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: dragging and rotating inventory items">
                 <div class="panel__inner">
                   <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 3h8v8H3V3Zm10 0h8v4h-8V3Zm0 6h8v12h-8V9ZM3 13h8v8H3v-8Z"/></svg>
                   <span class="panel__kind">GIF · UI system</span>
@@ -283,7 +285,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
               </figure>
             </div>
             <details class="code">
-              <summary>inventory_grid.gd — placement test<span class="code__lang">GDScript 2.0</span></summary>
+              <summary><span class="code__file">inventory_grid.gd — placement test</span><span class="code__lang">GDScript 2.0</span></summary>
 <pre><code data-lang="gdscript">func can_place(item: ItemData, cell: Vector2i, rotated: bool) -&gt; bool:
     var size := Vector2i(item.size.y, item.size.x) if rotated else item.size
     if cell.x &lt; 0 or cell.y &lt; 0 or cell.x + size.x &gt; width or cell.y + size.y &gt; height:
@@ -304,9 +306,9 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
             <div class="case__body">
               <div class="ps">
                 <div class="ps__item"><span class="ps__label">Problem</span><p>Fully simulated building pieces jitter, drift and get expensive once players stack dozens of them.</p></div>
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Pieces snap to sockets and settle as physics bodies, then sleep once at rest. Only disturbed structures wake up — physics where it matters, near-zero cost where it doesn't.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Pieces snap to sockets, stay dynamic while settling and sleep at rest. Disturbances wake only the affected bodies — idle cost drops without losing physical interaction.</p></div>
               </div>
-              <figure class="panel panel--gif" aria-label="Animated preview placeholder: building and collapsing a structure">
+              <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: building and collapsing a structure">
                 <div class="panel__inner">
                   <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 17h7v4H3v-4Zm11 0h7v4h-7v-4ZM7 11h10v4H7v-4Zm2-6h6v4H9V5Z"/></svg>
                   <span class="panel__kind">GIF · Physics</span>
@@ -318,8 +320,8 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         </div>
 
         <div class="project__links reveal">
-          <a class="link-arrow" aria-disabled="true">Source</a>
-          <a class="link-arrow" aria-disabled="true">Playable build</a>
+          <span class="link-arrow link-arrow--soon">Source</span>
+          <span class="link-arrow link-arrow--soon">Playable build</span>
         </div>
       </article>
 
@@ -328,7 +330,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         <header class="reveal">
           <p class="project__index">Project C</p>
           <h3 class="project__title" id="pc-title">Planetary Rocket Sim &amp; N-Body Physics</h3>
-          <p class="project__summary">A rocket simulation where every body pulls on every other. Three physical planets orbit a sun, and the flight path ahead is predicted by my own integrator — no patched-conics shortcuts.</p>
+          <p class="project__summary">A sun and three physical planets pull on each other in a full N-body simulation; the rocket flies through their evolving gravity field. Its future path is predicted by my own fixed-step integrator — no patched-conics shortcuts.</p>
           <dl class="meta">
             <div><dt>Role</dt><dd>Solo · physics &amp; tooling</dd></div>
             <div><dt>Stack</dt><dd>Godot 4 · GDScript 2.0</dd></div>
@@ -356,7 +358,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
                 <div class="ps__item"><span class="ps__label">Problem</span><p>With three planets and a sun all pulling at once there is no closed-form orbit — the player still needs to see where the rocket will go.</p></div>
                 <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A ghost copy of the system is stepped forward with the same fixed-step integrator as the live simulation, so the drawn path and the real flight agree.</p></div>
               </div>
-              <figure class="panel panel--gif" aria-label="Animated preview placeholder: predicted orbit line updating during a burn">
+              <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: predicted orbit line updating during a burn">
                 <div class="panel__inner">
                   <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0-7C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2Zm0 2a8 8 0 0 1 7.9 6.7l-2 .3A6 6 0 0 0 12 6V4Z"/></svg>
                   <span class="panel__kind">GIF · Simulation</span>
@@ -365,7 +367,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
               </figure>
             </div>
             <details class="code">
-              <summary>trajectory.gd — prediction loop<span class="code__lang">GDScript 2.0</span></summary>
+              <summary><span class="code__file">trajectory.gd — prediction loop</span><span class="code__lang">GDScript 2.0</span></summary>
 <pre><code data-lang="gdscript">func predict(start: BodyState, steps: int, dt: float) -&gt; PackedVector3Array:
     var points := PackedVector3Array()
     points.resize(steps)
@@ -390,9 +392,9 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
             <div class="case__body">
               <div class="ps">
                 <div class="ps__item"><span class="ps__label">Problem</span><p>Normal launches hide integrator errors — gravity is gentle and steps are small compared to the forces involved.</p></div>
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Starting on the sun's surface is the worst case: extreme gravity, huge velocities. If prediction and live flight still agree there, they agree everywhere.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Starting on the sun's surface is a deliberate high-acceleration regression case: predicted and live trajectories are compared over the same horizon. Close approaches, timestep and long-duration runs cover the other failure modes.</p></div>
               </div>
-              <figure class="panel panel--gif" aria-label="Animated preview placeholder: rocket escaping from the sun">
+              <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: rocket escaping from the sun">
                 <div class="panel__inner">
                   <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10ZM11 1h2v3h-2V1Zm0 19h2v3h-2v-3ZM1 11h3v2H1v-2Zm19 0h3v2h-3v-2ZM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4-2.1-2.1Zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4-2.1-2.1ZM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1-1.4-1.4ZM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1-1.4-1.4Z"/></svg>
                   <span class="panel__kind">GIF · Edge case</span>
@@ -404,8 +406,8 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         </div>
 
         <div class="project__links reveal">
-          <a class="link-arrow" aria-disabled="true">Source</a>
-          <a class="link-arrow" aria-disabled="true">Playable build</a>
+          <span class="link-arrow link-arrow--soon">Source</span>
+          <span class="link-arrow link-arrow--soon">Playable build</span>
         </div>
       </article>
     </section>
@@ -425,7 +427,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
             <p class="vehicle__sub">Blender · hard surface</p>
           </div>
           <div class="gallery">
-            <figure class="panel panel--img" aria-label="Image placeholder: Ferrari 812 Superfast hero render">
+            <figure class="panel panel--img" role="img" aria-label="Image placeholder: Ferrari 812 Superfast hero render">
               <div class="panel__inner">
                 <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm1 2v10.6l4-4 3 3 3.5-3.5L19 15.6V6H5Zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/></svg>
                 <span class="panel__kind">Image · Hero render</span>
@@ -433,9 +435,9 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
               </div>
             </figure>
             <div class="gallery__row">
-              <figure class="panel panel--img panel--square" aria-label="Image placeholder: wireframe"><div class="panel__inner"><span class="panel__kind">Wireframe</span></div></figure>
-              <figure class="panel panel--img panel--square" aria-label="Image placeholder: detail shot"><div class="panel__inner"><span class="panel__kind">Detail</span></div></figure>
-              <figure class="panel panel--img panel--square" aria-label="Image placeholder: rear view"><div class="panel__inner"><span class="panel__kind">Rear</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Image placeholder: wireframe"><div class="panel__inner"><span class="panel__kind">Wireframe</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Image placeholder: detail shot"><div class="panel__inner"><span class="panel__kind">Detail</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Image placeholder: rear view"><div class="panel__inner"><span class="panel__kind">Rear</span></div></figure>
             </div>
           </div>
         </article>
@@ -446,7 +448,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
             <p class="vehicle__sub">Blender · hard surface</p>
           </div>
           <div class="gallery">
-            <figure class="panel panel--img" aria-label="Image placeholder: BMW E36 hero render">
+            <figure class="panel panel--img" role="img" aria-label="Image placeholder: BMW E36 hero render">
               <div class="panel__inner">
                 <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm1 2v10.6l4-4 3 3 3.5-3.5L19 15.6V6H5Zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/></svg>
                 <span class="panel__kind">Image · Hero render</span>
@@ -454,9 +456,9 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
               </div>
             </figure>
             <div class="gallery__row">
-              <figure class="panel panel--img panel--square" aria-label="Image placeholder: wireframe"><div class="panel__inner"><span class="panel__kind">Wireframe</span></div></figure>
-              <figure class="panel panel--img panel--square" aria-label="Image placeholder: interior"><div class="panel__inner"><span class="panel__kind">Interior</span></div></figure>
-              <figure class="panel panel--img panel--square" aria-label="Image placeholder: rear view"><div class="panel__inner"><span class="panel__kind">Rear</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Image placeholder: wireframe"><div class="panel__inner"><span class="panel__kind">Wireframe</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Image placeholder: interior"><div class="panel__inner"><span class="panel__kind">Interior</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Image placeholder: rear view"><div class="panel__inner"><span class="panel__kind">Rear</span></div></figure>
             </div>
           </div>
         </article>
@@ -496,29 +498,28 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
 
         <ol class="tracks" aria-label="Track list">
           <li class="track" data-src="assets/audio/track-01.mp3" data-title="Ocean World — Main Theme" data-ctx="Project A · Score">
-            <button class="track__btn" type="button"><span class="track__no">01<span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span><span class="track__title">Ocean World — Main Theme</span><span class="track__ctx">Project A · Score</span></span><span class="track__dur">3:12</span></button>
+            <button class="track__btn" type="button"><span class="track__no">01<span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span><span class="track__title">Ocean World — Main Theme</span><span class="track__ctx">Project A · Score</span></span><span class="track__dur"><span>3:12</span></span></button>
           </li>
           <li class="track" data-src="assets/audio/track-02.mp3" data-title="Undertow" data-ctx="Project A · Ambient loop">
-            <button class="track__btn" type="button"><span class="track__no">02<span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span><span class="track__title">Undertow</span><span class="track__ctx">Project A · Ambient loop</span></span><span class="track__dur">2:40</span></button>
+            <button class="track__btn" type="button"><span class="track__no">02<span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span><span class="track__title">Undertow</span><span class="track__ctx">Project A · Ambient loop</span></span><span class="track__dur"><span>2:40</span></span></button>
           </li>
           <li class="track" data-src="assets/audio/track-03.mp3" data-title="Breach" data-ctx="Project B · Combat">
-            <button class="track__btn" type="button"><span class="track__no">03<span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span><span class="track__title">Breach</span><span class="track__ctx">Project B · Combat</span></span><span class="track__dur">2:58</span></button>
+            <button class="track__btn" type="button"><span class="track__no">03<span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span><span class="track__title">Breach</span><span class="track__ctx">Project B · Combat</span></span><span class="track__dur"><span>2:58</span></span></button>
           </li>
           <li class="track" data-src="assets/audio/track-04.mp3" data-title="Escape Velocity" data-ctx="Project C · Main theme">
-            <button class="track__btn" type="button"><span class="track__no">04<span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span><span class="track__title">Escape Velocity</span><span class="track__ctx">Project C · Main theme</span></span><span class="track__dur">3:34</span></button>
+            <button class="track__btn" type="button"><span class="track__no">04<span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span><span class="track__title">Escape Velocity</span><span class="track__ctx">Project C · Main theme</span></span><span class="track__dur"><span>3:34</span></span></button>
           </li>
         </ol>
 
         <audio preload="none" data-audio></audio>
       </div>
-      <p class="audio-note reveal">Files live in <code>assets/audio/</code>.</p>
     </section>
 
     <!-- ===================================================== 5. BIO -->
     <section class="section wrap" id="about" aria-labelledby="about-title">
       <header class="section-head reveal">
         <p class="label">04 — About</p>
-        <h2 class="section-title" id="about-title">One person, the whole stack</h2>
+        <h2 class="section-title" id="about-title">From simulation to sound</h2>
       </header>
       <div class="prose reveal">
         <p>I'm a game developer who likes the parts most people treat as black boxes: how terrain becomes triangles, how a wave becomes a normal, how three planets decide where a rocket ends up.</p>
@@ -528,7 +529,8 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         <div><dt>Engine</dt><dd>Godot 4</dd></div>
         <div><dt>Languages</dt><dd>GDScript 2.0 · Godot Shading Language</dd></div>
         <div><dt>Tools</dt><dd>Blender · DAW · Git</dd></div>
-        <div><dt>Based in</dt><dd>Germany</dd></div>
+        <div><dt>Open to</dt><dd>Gameplay · Systems · Technical art</dd></div>
+        <div><dt>Based in</dt><dd>Germany · CET</dd></div>
       </dl>
     </section>
 
@@ -543,6 +545,8 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         <nav class="contact__links" aria-label="Profiles">
           <a href="https://github.com/WasgehtSiedasan2205" rel="me noopener" target="_blank"><span>GitHub</span><span>@WasgehtSiedasan2205</span></a>
           <a href="https://www.linkedin.com/in/your-handle" rel="me noopener" target="_blank"><span>LinkedIn</span><span>/in/your-handle</span></a>
+          <!-- When the PDF exists: <a href="assets/resume.pdf" download><span>Résumé</span><span>PDF</span></a> -->
+          <span class="is-soon"><span>Résumé</span><span>PDF · soon</span></span>
         </nav>
       </div>
     </section>
