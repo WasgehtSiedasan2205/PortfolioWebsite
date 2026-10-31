@@ -161,7 +161,7 @@
       poster.decoding = "async";
       poster.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
       box.insertBefore(poster, btn);
-      btn.setAttribute("aria-label", `Play video: ${title}`);
+      btn.setAttribute("aria-label", `Play video: ${title}${isFile ? " (opens in a new tab)" : ""}`);
 
       let iframe = null;
       onMediaClaim(box, () => {
@@ -236,6 +236,10 @@
       ui.seek.value = String(Math.round(pct * 1000));
       ui.seek.style.setProperty("--pct", `${pct * 100}%`);
     }
+    const setSeekText = (seconds) => {
+      const d = Number.isFinite(audio.duration) ? audio.duration : 0;
+      ui.seek.setAttribute("aria-valuetext", `${fmt(seconds)} of ${fmt(d)}`);
+    };
 
     function paintProgress() {
       raf = 0;
@@ -243,6 +247,7 @@
       const d = audio.duration;
       setProgress(Number.isFinite(d) && d > 0 ? audio.currentTime / d : 0);
       ui.current.textContent = fmt(audio.currentTime);
+      setSeekText(audio.currentTime);
     }
     const schedulePaint = () => { if (!raf) raf = requestAnimationFrame(paintProgress); };
 
@@ -256,6 +261,7 @@
       ui.duration.textContent = durEl(index)?.textContent || "0:00";
       ui.current.textContent = "0:00";
       setProgress(0);
+      ui.seek.setAttribute("aria-valuetext", `0:00 of ${ui.duration.textContent}`);
       setMediaSession(t);
     }
 
@@ -346,31 +352,44 @@
     }
 
     // Check which files exist (metadata only, one at a time) and fill in their real durations.
+    // A per-track timeout keeps the queue moving where browsers ignore preload (e.g. iOS on cellular);
+    // a timeout is inconclusive, so only a real media error marks a track missing.
     function probe() {
       if (probed) return;
       probed = true;
-      const a = new Audio();
-      a.preload = "metadata";
       let i = -1;
-      const nextProbe = () => {
-        i += 1;
-        if (i >= tracks.length) { a.removeAttribute("src"); a.load(); return; }
-        if (!isAvailable(i)) { nextProbe(); return; }   // already failed during playback
-        a.src = tracks[i].dataset.src;
+      let current = null;
+      let timer = 0;
+
+      const finish = () => {
+        clearTimeout(timer);
+        if (current) { current.removeAttribute("src"); current.load(); current = null; }
       };
-      a.addEventListener("loadedmetadata", () => {
-        if (Number.isFinite(a.duration)) {
-          durEl(i).textContent = fmt(a.duration);
-          if (i === index && loaded !== index) ui.duration.textContent = fmt(a.duration);
-        }
-        nextProbe();
-      });
-      a.addEventListener("error", () => {
-        if (!a.getAttribute("src")) return;
-        markMissing(i);
-        refreshAvailability();
-        nextProbe();
-      });
+      const nextProbe = () => {
+        finish();
+        i += 1;
+        if (i >= tracks.length) return;
+        if (!isAvailable(i)) { nextProbe(); return; }   // already failed during playback
+        const idx = i;
+        const a = (current = new Audio());
+        a.preload = "metadata";
+        a.addEventListener("loadedmetadata", () => {
+          if (a !== current) return;
+          if (Number.isFinite(a.duration) && a.duration > 0) {
+            durEl(idx).textContent = fmt(a.duration);
+            if (idx === index && loaded !== index) ui.duration.textContent = fmt(a.duration);
+          }
+          nextProbe();
+        });
+        a.addEventListener("error", () => {
+          if (a !== current) return;
+          markMissing(idx);
+          refreshAvailability();
+          nextProbe();
+        });
+        timer = setTimeout(() => { if (a === current) nextProbe(); }, 8000);
+        a.src = tracks[idx].dataset.src;
+      };
       nextProbe();
     }
     if (hasIO) {
@@ -397,7 +416,10 @@
       scrubbing = true;
       const pct = Number(ui.seek.value) / 1000;
       ui.seek.style.setProperty("--pct", `${pct * 100}%`);
-      if (Number.isFinite(audio.duration)) ui.current.textContent = fmt(pct * audio.duration);
+      if (Number.isFinite(audio.duration)) {
+        ui.current.textContent = fmt(pct * audio.duration);
+        setSeekText(pct * audio.duration);
+      }
     });
     ui.seek.addEventListener("change", () => {
       if (Number.isFinite(audio.duration)) audio.currentTime = (Number(ui.seek.value) / 1000) * audio.duration;
@@ -411,10 +433,14 @@
     audio.addEventListener("pause", () => { root.classList.remove("is-playing"); ui.toggle.setAttribute("aria-label", "Play"); setPlaybackState("paused"); setBuffering(false); });
     audio.addEventListener("waiting", () => setBuffering(true));
     audio.addEventListener("playing", () => setBuffering(false));
-    audio.addEventListener("loadedmetadata", () => {
+    const syncDuration = () => {
+      if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
       ui.seek.disabled = false;
       ui.duration.textContent = fmt(audio.duration);
-    });
+      setSeekText(audio.currentTime);
+    };
+    audio.addEventListener("loadedmetadata", syncDuration);
+    audio.addEventListener("durationchange", syncDuration);
     audio.addEventListener("timeupdate", schedulePaint);
     audio.addEventListener("ended", () => {
       const i = nextAvailable(index, 1, false);
@@ -439,20 +465,39 @@
 
   /* ------------------------------------------------------------ Panel media */
   // Real images/videos inside placeholder panels fade in once loaded; on failure the placeholder stays.
+  // Looping preview videos (GIF replacements) only play while visible and never under reduced motion.
   function initPanelMedia() {
-    $$(".panel > img, .panel > video").forEach((media) => {
-      const panel = media.parentElement;
+    const videoIO = hasIO ? new IntersectionObserver((entries) => {
+      for (const { target, isIntersecting } of entries) {
+        if (isIntersecting && !reducedMotion.matches) target.play().catch(() => {});
+        else target.pause();
+      }
+    }, { threshold: 0.25 }) : null;
+
+    $$(".panel > img, .panel > picture > img, .panel > video").forEach((media) => {
+      const panel = media.closest(".panel");
       const loaded = () => panel.classList.add("is-loaded");
       const failed = () => {
         const desc = $(".panel__desc", panel);
         if (desc) desc.textContent = "Preview unavailable";
         console.warn(`[media] Failed to load: ${media.currentSrc || media.getAttribute("src")}`);
       };
-      const isVideo = media.tagName === "VIDEO";
-      if (isVideo ? media.readyState >= 2 : media.complete && media.naturalWidth > 0) loaded();
-      else if (!isVideo && media.complete) failed();
+
+      if (media.tagName === "VIDEO") {
+        media.muted = true;
+        media.playsInline = true;
+        media.removeAttribute("autoplay");
+        if (media.poster || media.readyState >= 2) loaded();
+        else media.addEventListener("loadeddata", loaded, { once: true });
+        // With <source> children the error fires on the last source, not on the video.
+        ($("source:last-of-type", media) || media).addEventListener("error", failed, { once: true });
+        if (videoIO) videoIO.observe(media);
+        return;
+      }
+
+      if (media.complete) (media.naturalWidth > 0 ? loaded : failed)();
       else {
-        media.addEventListener(isVideo ? "loadeddata" : "load", loaded, { once: true });
+        media.addEventListener("load", loaded, { once: true });
         media.addEventListener("error", failed, { once: true });
       }
     });

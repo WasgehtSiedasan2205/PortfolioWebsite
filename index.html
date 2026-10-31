@@ -4,16 +4,37 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Your Name — Game Developer &amp; Systems Architect</title>
-  <meta name="description" content="Godot 4 / GDScript 2.0 game developer and systems architect: engine architecture, voxel worlds, shaders, physics simulation, 3D art and audio.">
+  <meta name="description" content="Godot 4 / GDScript 2.0 game developer and systems architect in Germany: voxel/SDF terrain, shaders, N-body physics, tactical gameplay systems, 3D vehicles and original music.">
+  <link rel="canonical" href="https://wasgehtsiedasan2205.github.io/PortfolioWebsite/">
   <meta name="theme-color" content="#000000">
   <meta name="color-scheme" content="dark">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Your Name — Portfolio">
+  <meta property="og:url" content="https://wasgehtsiedasan2205.github.io/PortfolioWebsite/">
   <meta property="og:title" content="Your Name — Game Developer &amp; Systems Architect">
-  <meta property="og:description" content="Engines, worlds and the sound they make. Godot 4 · GDScript 2.0 · shaders · physics · audio.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Cpath d='M9 22V10h3l4 7 4-7h3v12h-3v-7l-4 6.5L12 15v7z' fill='%23f5f5f5'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <meta property="og:description" content="Godot 4 terrain, rendering, physics and gameplay systems — with problem/solution breakdowns, 3D vehicles and original music.">
+  <!-- Add a 1200×630 preview once it exists (see README):
+  <meta property="og:image" content="https://wasgehtsiedasan2205.github.io/PortfolioWebsite/assets/img/social-preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Your Name — Game Developer & Systems Architect"> -->
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css?v=4">
   <script>document.documentElement.classList.add("js");</script>
-  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/main.js?v=4" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Your Name",
+    "url": "https://wasgehtsiedasan2205.github.io/PortfolioWebsite/",
+    "jobTitle": "Game Developer & Systems Architect",
+    "address": { "@type": "PostalAddress", "addressCountry": "DE" },
+    "sameAs": ["https://github.com/WasgehtSiedasan2205"],
+    "knowsAbout": ["Game development", "Godot Engine", "GDScript", "Shaders", "Procedural terrain", "Physics simulation", "Gameplay systems", "Performance optimization", "Blender", "Music composition"]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -31,7 +52,7 @@
     </nav>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
 
     <!-- ===================================================== 1. HERO -->
     <section class="hero wrap" aria-labelledby="hero-name">
@@ -40,7 +61,7 @@
           <!-- Replace the panel with:
                <img src="assets/img/portrait.jpg" width="800" height="1000" alt="Portrait of Your Name" fetchpriority="high" decoding="async"> -->
           <figure class="hero__portrait hero__intro hero__intro--fade">
-            <div class="panel panel--img panel--portrait" role="img" aria-label="Portrait placeholder">
+            <div class="panel panel--img panel--portrait" role="img" aria-label="Portrait placeholder for Your Name">
               <div class="panel__inner">
                 <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5Z"/></svg>
                 <span class="panel__kind">Portrait</span>
@@ -49,7 +70,7 @@
           </figure>
 
           <div class="hero__text">
-            <p class="status hero__intro hero__intro--fade" style="--i:1"><span class="status__dot" aria-hidden="true"></span>Open to roles · Germany · Remote EU</p>
+            <p class="status hero__intro hero__intro--fade" style="--i:1"><span class="status__dot" aria-hidden="true"></span>Open to gameplay &amp; systems roles · Germany · Remote</p>
             <h1 class="hero__name hero__intro" id="hero-name" style="--i:2">Your Name</h1>
             <p class="hero__headline hero__intro" style="--i:3">Game developer &amp; systems architect. I build the systems a world runs on — and how it looks, plays and sounds.</p>
             <p class="hero__lede hero__intro hero__intro--fade" style="--i:4">In Godot&nbsp;4 and GDScript&nbsp;2.0 I build voxel/SDF terrain, GPU post effects, multi-body gravity and tactical gameplay — then profile them against the frame budget. I also make the 3D models and write the music.</p>
@@ -66,8 +87,8 @@
               <a class="btn btn--solid" href="#work">Selected work
                 <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M7.25 2h1.5v8.6l3.2-3.2 1.05 1.06L8 13.5 2.99 8.46 4.05 7.4l3.2 3.2V2Z"/></svg>
               </a>
-              <a class="btn" href="https://github.com/WasgehtSiedasan2205" rel="me noopener" target="_blank">GitHub</a>
-              <a class="btn" href="#contact">Contact</a>
+              <a class="btn" href="mailto:hello@example.com">Email me</a>
+              <a class="btn" href="https://github.com/WasgehtSiedasan2205" rel="me noopener" target="_blank">GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>
             </div>
           </div>
         </div>
@@ -81,6 +102,12 @@
         <h2 class="section-title" id="work-title">Systems, worlds &amp; simulations</h2>
         <p class="section-intro">Three Godot&nbsp;4 projects, each told as problem → solution. I state plainly what I wrote, what I adapted and where AI assisted.</p>
       </header>
+
+      <nav class="work-index reveal" aria-label="Project overview">
+        <a href="#project-ocean"><span class="work-index__key">A</span><span class="work-index__title">Voxel &amp; Ocean World</span><span class="work-index__focus">Terrain · Shaders · Rendering</span></a>
+        <a href="#project-shooter"><span class="work-index__key">B</span><span class="work-index__title">Tactical Shooter</span><span class="work-index__focus">Gameplay · Inventory · Physics</span></a>
+        <a href="#project-orbit"><span class="work-index__key">C</span><span class="work-index__title">Rocket Sim &amp; N-Body Physics</span><span class="work-index__focus">Simulation · Prediction</span></a>
+      </nav>
 
       <!-- ---------- Project A -->
       <article class="project" id="project-ocean" aria-labelledby="pa-title">
@@ -438,9 +465,9 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
               </div>
             </figure>
             <div class="gallery__row">
-              <figure class="panel panel--img panel--square" role="img" aria-label="Image placeholder: wireframe"><div class="panel__inner"><span class="panel__kind">Wireframe</span></div></figure>
-              <figure class="panel panel--img panel--square" role="img" aria-label="Image placeholder: detail shot"><div class="panel__inner"><span class="panel__kind">Detail</span></div></figure>
-              <figure class="panel panel--img panel--square" role="img" aria-label="Image placeholder: rear view"><div class="panel__inner"><span class="panel__kind">Rear</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Ferrari 812 Superfast wireframe placeholder"><div class="panel__inner"><span class="panel__kind">Wireframe</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Ferrari 812 Superfast detail shot placeholder"><div class="panel__inner"><span class="panel__kind">Detail</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Ferrari 812 Superfast rear view placeholder"><div class="panel__inner"><span class="panel__kind">Rear</span></div></figure>
             </div>
           </div>
         </article>
@@ -459,9 +486,9 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
               </div>
             </figure>
             <div class="gallery__row">
-              <figure class="panel panel--img panel--square" role="img" aria-label="Image placeholder: wireframe"><div class="panel__inner"><span class="panel__kind">Wireframe</span></div></figure>
-              <figure class="panel panel--img panel--square" role="img" aria-label="Image placeholder: interior"><div class="panel__inner"><span class="panel__kind">Interior</span></div></figure>
-              <figure class="panel panel--img panel--square" role="img" aria-label="Image placeholder: rear view"><div class="panel__inner"><span class="panel__kind">Rear</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="BMW E36 wireframe placeholder"><div class="panel__inner"><span class="panel__kind">Wireframe</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="BMW E36 interior placeholder"><div class="panel__inner"><span class="panel__kind">Interior</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="BMW E36 rear view placeholder"><div class="panel__inner"><span class="panel__kind">Rear</span></div></figure>
             </div>
           </div>
         </article>
@@ -546,19 +573,20 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
       <div class="reveal">
         <a class="contact__mail" href="mailto:hello@example.com">hello@example.com</a>
         <nav class="contact__links" aria-label="Profiles">
-          <a href="https://github.com/WasgehtSiedasan2205" rel="me noopener" target="_blank"><span>GitHub</span><span>@WasgehtSiedasan2205</span></a>
-          <a href="https://www.linkedin.com/in/your-handle" rel="me noopener" target="_blank"><span>LinkedIn</span><span>/in/your-handle</span></a>
+          <a href="https://github.com/WasgehtSiedasan2205" rel="me noopener" target="_blank"><span>GitHub<span class="visually-hidden"> (opens in a new tab)</span></span><span>@WasgehtSiedasan2205</span></a>
+          <a href="https://www.linkedin.com/in/your-handle" rel="me noopener" target="_blank"><span>LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></span><span>/in/your-handle</span></a>
           <!-- When the PDF exists: <a href="assets/resume.pdf" download><span>Résumé</span><span>PDF</span></a> -->
           <span class="is-soon"><span>Résumé</span><span>PDF · soon</span></span>
         </nav>
       </div>
+      <p class="contact__coda reveal">Built from the frame budget up.</p>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="wrap">
       <span>© <span data-year>2026</span> Your Name</span>
-      <span>Hand-built · No frameworks</span>
+      <a href="mailto:hello@example.com">hello@example.com</a>
       <a href="#top">Back to top ↑</a>
     </div>
   </footer>

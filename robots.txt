@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://wasgehtsiedasan2205.github.io/PortfolioWebsite/sitemap.xml
