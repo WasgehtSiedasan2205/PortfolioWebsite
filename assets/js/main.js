@@ -89,17 +89,25 @@
   }
 
   /* ------------------------------------------------------------ YouTube facade */
+  // data-yt-id accepts a bare 11-character ID or any YouTube URL (watch, youtu.be, shorts, embed, live).
+  function parseYouTubeId(value) {
+    const v = (value || "").trim();
+    if (/^[\w-]{11}$/.test(v)) return v;
+    const m = v.match(/(?:youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/|v\/)|youtu\.be\/)([\w-]{11})/);
+    return m ? m[1] : "";
+  }
+
   function initVideos() {
     const isFile = location.protocol === "file:";
 
     $$(".video[data-yt-id]").forEach((box) => {
-      const id = (box.dataset.ytId || "").trim();
+      const id = parseYouTubeId(box.dataset.ytId);
       const title = box.dataset.ytTitle || "Video";
       const btn = $(".video__btn", box);
       if (!btn) return;
 
       // Pending ("coming soon") is the static HTML default; only upgrade when a valid ID exists.
-      if (!/^[\w-]{11}$/.test(id)) return;
+      if (!id) return;
       box.classList.remove("is-pending");
       btn.disabled = false;
 

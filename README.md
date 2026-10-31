@@ -16,7 +16,7 @@ assets/img/           images, GIFs, videos
 | --- | --- | --- |
 | Name, email | `index.html` | Search for `Your Name` and `hello@example.com`. |
 | Portrait | Hero `<figure class="hero__portrait">` | Replace the inner `.panel` with the `<img>` from the HTML comment above it. |
-| YouTube videos | `<div class="video" data-yt-id="">` | Put the 11-character video ID into `data-yt-id`. Empty = "coming soon". |
+| YouTube videos | `data-yt-id=""` under each `<!-- YOUTUBE: … -->` comment | Paste the full YouTube URL (or just the ID) between the quotes. Empty = "coming soon". |
 | GIF previews (blue panels) | `<figure class="panel panel--gif">` | Replace the inner `.panel__inner` with a looping video and remove `role`/`aria-label` from the figure (see below). |
 | Images (red panels) | `<figure class="panel panel--img">` | Replace `.panel__inner` with an `<img>` or `<picture>` (see below) and remove `role`/`aria-label`. |
 | Metrics | `<ul class="metrics">` | Replace `—` values and remove the `data-todo` attribute. |
@@ -33,13 +33,13 @@ Note: YouTube blocks embeds on `file://` pages, so locally the video opens in a 
 
 ```html
 <picture>
-  <source type="image/avif" srcset="assets/img/e36-640.avif 640w, assets/img/e36-1280.avif 1280w" sizes="(max-width: 64rem) 100vw, 640px">
-  <img src="assets/img/e36-1280.webp" srcset="assets/img/e36-640.webp 640w, assets/img/e36-1280.webp 1280w"
-       sizes="(max-width: 64rem) 100vw, 640px" width="1280" height="720" alt="BMW E36, three-quarter front render" loading="lazy" decoding="async">
+  <source type="image/avif" srcset="assets/img/apex-rs-640.avif 640w, assets/img/apex-rs-1280.avif 1280w" sizes="(max-width: 64rem) 100vw, 640px">
+  <img src="assets/img/apex-rs-1280.webp" srcset="assets/img/apex-rs-640.webp 640w, assets/img/apex-rs-1280.webp 1280w"
+       sizes="(max-width: 64rem) 100vw, 640px" width="1280" height="720" alt="Apex RS, three-quarter front render" loading="lazy" decoding="async">
 </picture>
 ```
 
-The hero portrait displays at max 256 px: export 256×320 and 512×640, keep `fetchpriority="high"` and no `loading="lazy"`.
+The hero portrait has the same frame as the project videos (16:9, max 640 px wide): export 640×360 and 1280×720, keep `fetchpriority="high"` and no `loading="lazy"`.
 
 **GIF replacements**: use short muted video loops, not GIFs (10–20× smaller). Provide MP4 (H.264) + WebM, a poster frame, and `preload="none"`. The script plays them only while visible and never with reduced motion.
 

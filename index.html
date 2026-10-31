@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Your Name — Game Developer &amp; Systems Architect</title>
-  <meta name="description" content="Godot 4 / GDScript 2.0 game developer and systems architect in Germany: voxel/SDF terrain, shaders, N-body physics, tactical gameplay systems, 3D vehicles and original music.">
+  <meta name="description" content="Godot 4 / GDScript 2.0 game developer and systems architect in Germany: voxel/SDF terrain, FFT ocean, orbital trajectory prediction, tactical gameplay systems, 3D vehicles and original music.">
   <link rel="canonical" href="https://wasgehtsiedasan2205.github.io/PortfolioWebsite/">
   <meta name="theme-color" content="#000000">
   <meta name="color-scheme" content="dark">
@@ -20,9 +20,9 @@
   <meta property="og:image:alt" content="Your Name — Game Developer & Systems Architect"> -->
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/css/styles.css?v=7">
+  <link rel="stylesheet" href="assets/css/styles.css?v=8">
   <script>document.documentElement.classList.add("js");</script>
-  <script src="assets/js/main.js?v=7" defer></script>
+  <script src="assets/js/main.js?v=8" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -59,9 +59,9 @@
       <div class="hero__grid">
         <div class="hero__layout">
           <!-- Replace the panel with:
-               <img src="assets/img/portrait.jpg" width="800" height="1000" alt="Portrait of Your Name" fetchpriority="high" decoding="async"> -->
+               <img src="assets/img/portrait.jpg" width="1280" height="720" alt="Portrait of Your Name" fetchpriority="high" decoding="async">  (16:9, e.g. 1280×720) -->
           <figure class="hero__portrait hero__intro hero__intro--fade">
-            <div class="panel panel--img panel--portrait" role="img" aria-label="Portrait placeholder for Your Name">
+            <div class="panel panel--img" role="img" aria-label="Portrait placeholder for Your Name">
               <div class="panel__inner">
                 <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5Z"/></svg>
                 <span class="panel__kind">Portrait</span>
@@ -73,7 +73,7 @@
             <p class="status hero__intro hero__intro--fade" style="--i:1"><span class="status__dot" aria-hidden="true"></span>Open to gameplay &amp; systems roles · Germany · Remote</p>
             <h1 class="hero__name hero__intro" id="hero-name" style="--i:2">Your Name</h1>
             <p class="hero__headline hero__intro" style="--i:3">Game developer &amp; systems architect. I build the systems a world runs on — and how it looks, plays, and sounds.</p>
-            <p class="hero__lede hero__intro hero__intro--fade" style="--i:4">In Godot&nbsp;4 and GDScript&nbsp;2.0 I build voxel/SDF terrain, GPU post effects, multi-body gravity, and tactical gameplay — then profile them against the frame budget. I also make the 3D models and write the music.</p>
+            <p class="hero__lede hero__intro hero__intro--fade" style="--i:4">In Godot&nbsp;4 and GDScript&nbsp;2.0 I build voxel/SDF terrain, an FFT ocean, orbital trajectory prediction, and tactical gameplay — then profile them against the frame budget. I also make the 3D models and write the music.</p>
 
             <ul class="disciplines hero__intro hero__intro--fade" style="--i:5" aria-label="Disciplines">
               <li>Graphics</li>
@@ -100,13 +100,13 @@
       <header class="section-head reveal">
         <p class="label">01 — Selected work</p>
         <h2 class="section-title" id="work-title">Systems, worlds &amp; simulations</h2>
-        <p class="section-intro">Three Godot&nbsp;4 projects, each told as problem → solution. I state plainly what I wrote, what I adapted, and where AI assisted.</p>
+        <p class="section-intro">Three Godot&nbsp;4 projects, each told as problem → solution — with a link to the repository.</p>
       </header>
 
       <nav class="work-index reveal" aria-label="Project overview">
         <a href="#project-ocean"><span class="work-index__key">A</span><span class="work-index__title">Voxel &amp; Ocean World</span><span class="work-index__focus">Terrain · Shaders · Rendering</span></a>
         <a href="#project-shooter"><span class="work-index__key">B</span><span class="work-index__title">Tactical Shooter</span><span class="work-index__focus">Gameplay · Inventory · Physics</span></a>
-        <a href="#project-orbit"><span class="work-index__key">C</span><span class="work-index__title">Rocket Sim &amp; N-Body Physics</span><span class="work-index__focus">Simulation · Prediction</span></a>
+        <a href="#project-orbit"><span class="work-index__key">C</span><span class="work-index__title">Rocket Sim &amp; Trajectory Prediction</span><span class="work-index__focus">Physics · Simulation</span></a>
       </nav>
 
       <!-- ---------- Project A -->
@@ -114,15 +114,16 @@
         <header class="reveal">
           <p class="project__index">Project A · Flagship</p>
           <h3 class="project__title" id="pa-title">Voxel &amp; Ocean World</h3>
-          <p class="project__summary">An open, diggable world with a stylized ocean. SDF terrain sits on a voxel material grid, so every dug cell keeps its material — and the shader reads that ID from vertex data through one shared material surface per chunk.</p>
+          <p class="project__summary">An open, diggable world with a stylized FFT ocean. SDF terrain sits on a voxel material grid, so every dug cell keeps its material — and all chunks share one material, built directly on Godot's RenderingServer.</p>
           <dl class="meta">
             <div><dt>Role</dt><dd>Solo · engine &amp; rendering</dd></div>
-            <div><dt>Stack</dt><dd>Godot 4.3+ · Forward+ · GDScript 2.0 · Godot shaders</dd></div>
+            <div><dt>Stack</dt><dd>Godot 4.3+ · Forward+ · GDScript 2.0 · Godot shaders · GLSL compute</dd></div>
             <div><dt>Status</dt><dd>In development</dd></div>
           </dl>
         </header>
 
         <div class="project__media reveal">
+          <!-- YOUTUBE: paste the full video URL between the quotes of data-yt-id on the next line -->
           <div class="video is-pending" data-yt-id="" data-yt-title="Voxel &amp; Ocean World — technical breakdown">
             <button class="video__btn" type="button" disabled aria-label="Voxel &amp; Ocean World — technical breakdown — video coming soon">
               <span class="video__play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.8v12.4L14 8 3 1.8Z"/></svg></span>
@@ -131,30 +132,32 @@
           </div>
         </div>
 
-        <!-- Fill in real numbers: remove data-todo once measured. -->
+        <!-- Metrics: edit the values here; remove data-todo once a value is measured. -->
         <ul class="metrics reveal" aria-label="Key measurements">
-          <li class="metric"><span class="metric__value" data-todo>— → —</span><span class="metric__label">Terrain draw calls per chunk</span></li>
+          <li class="metric"><span class="metric__value">1</span><span class="metric__label">Terrain draw call — all chunks share one material</span></li>
           <li class="metric"><span class="metric__value" data-todo>— ms</span><span class="metric__label">GPU frame time, ocean + terrain</span></li>
-          <li class="metric"><span class="metric__value" data-todo>—</span><span class="metric__label">Materials in one Texture2DArray</span></li>
+          <li class="metric"><span class="metric__value" data-todo>—</span><span class="metric__label">Textures in the Texture2DArray</span></li>
         </ul>
 
         <div class="cases">
           <section class="case reveal" aria-labelledby="pa-c1">
             <div class="case__head">
-              <h4 class="case__title" id="pa-c1">Ocean shader</h4>
-              <div class="tags"><span class="tag">Adapted</span><span class="tag tag--own">Optimized</span><span class="tag tag--ai">AI-assisted</span></div>
+              <h4 class="case__title" id="pa-c1">FFT ocean</h4>
+              <div class="tags"><span class="tag tag--own">Own system</span><span class="tag">GLSL compute</span><span class="tag">Stylized</span></div>
             </div>
             <div class="case__body">
               <div class="ps">
-                <div class="ps__item"><span class="ps__label">Problem</span><p>The reference ocean shaders I found used incompatible wave conventions for displacement and surface orientation — hard to tune, harder to extend.</p></div>
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Consolidated them into one shared Gerstner wave function, with my own wave logic and AI as a sparring partner for the math. Each call returns displacement and accumulates the derivatives for the normal; four waves are summed in the vertex stage.</p></div>
-                <p class="ps__keys"><span>Key techniques</span> Shared Gerstner parameterization · analytic derivatives · four-wave vertex displacement · normal checks at grazing angles</p>
+                <div class="ps__item"><span class="ps__label">Problem</span><p>My first ocean summed a handful of Gerstner waves. It was cheap, but repetitive and flat up close — and adding more waves for detail costs vertex work fast.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Replaced it with an FFT ocean: a few GLSL compute shaders build the spectrum and transform it into displacement and normal maps every frame — thousands of waves at a fixed cost, so fidelity and performance go up together.</p></div>
+                <div class="ps__item"><span class="ps__label">Problem</span><p>Physically driven surfaces still produce artifacts — tiling, harsh normal sparkle, noisy foam — that pull the eye away from the scene.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>The surface shading is deliberately stylized and cheats a little where it helps: artifacts are softened before they reach the image, so the ocean reads as calm, believable water and keeps the player immersed.</p></div>
+                <p class="ps__keys"><span>Key techniques</span> GLSL compute shaders · ocean spectrum + FFT · displacement &amp; normal maps · stylized surface shading · artifact suppression</p>
               </div>
-              <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: ocean waves and foam">
+              <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: FFT ocean surface">
                 <div class="panel__inner">
                   <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 15c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2v2c-2.5 0-2.5-2-5-2s-2.5 2-5 2-2.5-2-5-2-2.5 2-5 2v-2Zm0-5c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2v2c-2.5 0-2.5-2-5-2s-2.5 2-5 2-2.5-2-5-2-2.5 2-5 2v-2Z"/></svg>
-                  <span class="panel__kind">GIF · Shader</span>
-                  <span class="panel__desc">Wave motion and normals at grazing angles</span>
+                  <span class="panel__kind">GIF · Compute shader</span>
+                  <span class="panel__desc">FFT ocean in motion, stylized surface</span>
                 </div>
               </figure>
             </div>
@@ -167,10 +170,10 @@
             </div>
             <div class="case__body">
               <div class="ps">
-                <div class="ps__item"><span class="ps__label">Problem</span><p>An SDF encodes distance to a surface, not what it's made of. Separate meshes per material multiply draw calls — and digging still has to reveal the right material underneath.</p></div>
+                <div class="ps__item"><span class="ps__label">Problem</span><p>An SDF encodes distance to a surface, not what it's made of. Separate meshes or materials per terrain type multiply draw calls — and digging still has to reveal the right material underneath.</p></div>
                 <!-- TODO(owner): add chunk size, meshing thread (e.g. WorkerThreadPool) and remesh time per edit. -->
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A parallel voxel grid stores material IDs. For every emitted triangle, the mesher repeats one ID across the CUSTOM0 values of all three vertices; a flat varying then selects among the layers of one Texture2DArray — one shared material surface per chunk instead of one mesh per material.</p></div>
-                <p class="ps__keys"><span>Key techniques</span> SDF meshing · parallel voxel material grid · per-triangle IDs in CUSTOM0 · Texture2DArray · triplanar mapping</p>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A parallel voxel grid stores material IDs. For every emitted triangle, the mesher repeats one ID across the CUSTOM0 values of all three vertices; a flat varying then picks the matching layer of one Texture2DArray. Every chunk is created directly on Godot's RenderingServer and shares that single material — the whole terrain renders in one draw call.</p></div>
+                <p class="ps__keys"><span>Key techniques</span> SDF meshing · parallel voxel material grid · per-triangle IDs in CUSTOM0 · Texture2DArray · RenderingServer · triplanar mapping</p>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: digging reveals voxel materials">
                 <div class="panel__inner">
@@ -204,8 +207,6 @@
           </section>
         </div>
 
-        <p class="ownership reveal"><strong>Built:</strong> voxel data model, SDF mesher, material pipeline, compositor effect, and profiling. <strong>Adapted:</strong> base Gerstner wave equations from public shader examples; I rewrote the conventions and derivative accumulation. <strong>AI:</strong> helped derive and cross-check the wave derivatives and suggested refactors — I reviewed every change and validated it visually and with profiler captures.</p>
-
         <div class="project__links reveal">
           <!-- TODO(owner): replace href with the project's repository URL -->
           <a class="link-arrow" href="https://github.com/WasgehtSiedasan2205?tab=repositories" rel="noopener" target="_blank"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg>GitHub repository<span class="visually-hidden"> (opens in a new tab)</span></a>
@@ -219,7 +220,7 @@
         <header class="reveal">
           <p class="project__index">Project B</p>
           <h3 class="project__title" id="pb-title">Tactical Shooter</h3>
-          <p class="project__summary">A grounded tactical shooter prototype: COD-inspired weapon handling, a Tarkov-style grid inventory, physics-based building, and weather and time-of-day systems that drive lighting, VFX, and audio together.</p>
+          <p class="project__summary">A grounded tactical shooter prototype: DayZ-like movement with an inertia system, COD-inspired weapon handling, a Tarkov-style grid inventory, physics-based building, and weather and time-of-day systems that drive lighting, VFX, and audio together.</p>
           <dl class="meta">
             <div><dt>Role</dt><dd>Solo · gameplay systems</dd></div>
             <div><dt>Stack</dt><dd>Godot 4 · GDScript 2.0 · Godot shaders</dd></div>
@@ -228,6 +229,7 @@
         </header>
 
         <div class="project__media reveal">
+          <!-- YOUTUBE: paste the full video URL between the quotes of data-yt-id on the next line -->
           <div class="video is-pending" data-yt-id="" data-yt-title="Tactical Shooter — gameplay">
             <button class="video__btn" type="button" disabled aria-label="Tactical Shooter — gameplay — video coming soon">
               <span class="video__play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.8v12.4L14 8 3 1.8Z"/></svg></span>
@@ -237,6 +239,7 @@
         </div>
 
         <ul class="features reveal" aria-label="Feature set">
+          <li class="feature"><h4>Movement</h4><p>DayZ-like inertia system — believable speed, acceleration, and weight.</p></li>
           <li class="feature"><h4>Gunplay</h4><p>Recoil curves, ADS transitions, spread, and sway tuned as one handling model.</p></li>
           <li class="feature"><h4>Grid inventory</h4><p>Tarkov-style shaped items, rotation, and nested containers.</p></li>
           <li class="feature"><h4>Rigidbody building</h4><p>Physics-driven placement with snapping and stable stacking.</p></li>
@@ -246,6 +249,27 @@
         </ul>
 
         <div class="cases">
+          <section class="case reveal" aria-labelledby="pb-c0">
+            <div class="case__head">
+              <h4 class="case__title" id="pb-c0">DayZ-like movement &amp; inertia</h4>
+              <div class="tags"><span class="tag tag--own">Own system</span></div>
+            </div>
+            <div class="case__body">
+              <div class="ps">
+                <div class="ps__item"><span class="ps__label">Problem</span><p>Default character controllers start and stop instantly. That feels like a camera on rails, not a person carrying gear — and it breaks the grounded tone a tactical shooter depends on.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>An inertia system drives every movement state: speed builds up and bleeds off over time, direction changes carry momentum, and walking, jogging, and sprinting each have their own believable top speed and acceleration curve.</p></div>
+                <p class="ps__keys"><span>Key techniques</span> Acceleration &amp; deceleration curves · momentum on direction changes · per-state speed limits · grounded camera feel</p>
+              </div>
+              <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: character accelerating, turning, and stopping with inertia">
+                <div class="panel__inner">
+                  <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 5.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM9.8 9.4 7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3A7.3 7.3 0 0 0 19 13v-2a5.1 5.1 0 0 1-4.4-2.5l-1-1.6a2 2 0 0 0-1.7-.9c-.3 0-.5 0-.8.1L6 8.3V13h2V9.6l1.8-.2Z"/></svg>
+                  <span class="panel__kind">GIF · Movement</span>
+                  <span class="panel__desc">Acceleration, turning, and stopping with inertia</span>
+                </div>
+              </figure>
+            </div>
+          </section>
+
           <section class="case reveal" aria-labelledby="pb-c1">
             <div class="case__head">
               <h4 class="case__title" id="pb-c1">Tarkov-style grid inventory</h4>
@@ -300,8 +324,8 @@
       <article class="project" id="project-orbit" aria-labelledby="pc-title">
         <header class="reveal">
           <p class="project__index">Project C</p>
-          <h3 class="project__title" id="pc-title">Planetary Rocket Sim &amp; N-Body Physics</h3>
-          <p class="project__summary">A sun and three physical planets pull on each other in a full N-body simulation; the rocket flies through their evolving gravity field. Its future path is predicted by my own fixed-step integrator — no patched-conics shortcuts.</p>
+          <h3 class="project__title" id="pc-title">Planetary Rocket Sim &amp; Trajectory Prediction</h3>
+          <p class="project__summary">A rocket flies through the gravity of a sun and three planets. Only the rocket is simulated as a physics body; the planets move kinematically with real mass and size. What mattered was the rocket's path — predicted ahead by my own fixed-step integrator, no patched-conics shortcuts.</p>
           <dl class="meta">
             <div><dt>Role</dt><dd>Solo · physics &amp; tooling</dd></div>
             <div><dt>Stack</dt><dd>Godot 4 · GDScript 2.0</dd></div>
@@ -310,6 +334,7 @@
         </header>
 
         <div class="project__media reveal">
+          <!-- YOUTUBE: paste the full video URL between the quotes of data-yt-id on the next line -->
           <div class="video is-pending" data-yt-id="" data-yt-title="Planetary Rocket Sim — trajectory prediction">
             <button class="video__btn" type="button" disabled aria-label="Planetary Rocket Sim — trajectory prediction — video coming soon">
               <span class="video__play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.8v12.4L14 8 3 1.8Z"/></svg></span>
@@ -326,9 +351,9 @@
             </div>
             <div class="case__body">
               <div class="ps">
-                <div class="ps__item"><span class="ps__label">Problem</span><p>With three planets and a sun all pulling at once there is no general closed-form solution for the trajectories — the player still needs to see where the rocket will go.</p></div>
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A ghost copy of the system is stepped forward with the same fixed-step integrator as the live simulation, so the drawn path and the real flight agree.</p></div>
-                <p class="ps__keys"><span>Key techniques</span> Ghost-state simulation · shared fixed-step integrator · moving gravity sources · no patched conics</p>
+                <div class="ps__item"><span class="ps__label">Problem</span><p>The planets keep moving while the rocket flies, so the gravity it will feel an hour from now is not the gravity it feels now. The hard part was working out how to precompute the physics for every future timestep so the trajectory has the right shape at every point along the line.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>The predictor steps forward in time: for each future step it places every planet where it will be at that moment, sums their gravity on the rocket, and integrates with the same fixed timestep as the live simulation — so the drawn path and the real flight agree.</p></div>
+                <p class="ps__keys"><span>Key techniques</span> Per-timestep look-ahead · planet positions evaluated at future time · shared fixed-step integrator · no patched conics</p>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: predicted orbit line updating during a burn">
                 <div class="panel__inner">
@@ -342,20 +367,20 @@
 
           <section class="case reveal" aria-labelledby="pc-c2">
             <div class="case__head">
-              <h4 class="case__title" id="pc-c2">Stress test: launch from the sun</h4>
-              <div class="tags"><span class="tag">Testing</span></div>
+              <h4 class="case__title" id="pc-c2">Kinematic planets, physical rocket</h4>
+              <div class="tags"><span class="tag tag--own">Design decision</span></div>
             </div>
             <div class="case__body">
               <div class="ps">
-                <div class="ps__item"><span class="ps__label">Problem</span><p>Normal launches hide integrator errors — gravity is gentle and steps are small compared to the forces involved.</p></div>
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Starting on the sun's surface is a deliberate high-acceleration regression case: predicted and live trajectories are compared over the same horizon. Close approaches, timestep variation, and long-duration runs cover the other failure modes.</p></div>
-                <p class="ps__keys"><span>Key techniques</span> Extreme initial conditions · predicted vs. live comparison · regression scenes</p>
+                <div class="ps__item"><span class="ps__label">Problem</span><p>A full N-body simulation would make every planet react to every other body — more cost and more instability, without improving the one thing that mattered: the rocket's trajectory.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>The planets move kinematically on their orbits and carry mass and size, but physics never moves them. Only the rocket is a physics body. Because every planet's position is known for any point in time, the prediction stays deterministic and cheap.</p></div>
+                <p class="ps__keys"><span>Key techniques</span> Kinematic orbits · mass &amp; radius per planet · single physics body · deterministic look-ahead</p>
               </div>
-              <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: rocket escaping from the sun">
+              <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: planets moving on kinematic orbits while the rocket flies">
                 <div class="panel__inner">
                   <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10ZM11 1h2v3h-2V1Zm0 19h2v3h-2v-3ZM1 11h3v2H1v-2Zm19 0h3v2h-3v-2ZM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4-2.1-2.1Zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4-2.1-2.1ZM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1-1.4-1.4ZM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1-1.4-1.4Z"/></svg>
-                  <span class="panel__kind">GIF · Edge case</span>
-                  <span class="panel__desc">Escape burn from the solar surface</span>
+                  <span class="panel__kind">GIF · Simulation</span>
+                  <span class="panel__desc">Planets on their orbits, the rocket's path bending with them</span>
                 </div>
               </figure>
             </div>
@@ -382,11 +407,11 @@
       <div class="vehicles">
         <article class="vehicle reveal" aria-labelledby="v1-title">
           <div class="vehicle__head">
-            <h3 class="vehicle__title" id="v1-title">Ferrari 812 Superfast</h3>
+            <h3 class="vehicle__title" id="v1-title">Italio Spydster</h3>
             <p class="vehicle__sub">Blender · hard surface</p>
           </div>
           <div class="gallery">
-            <figure class="panel panel--img" role="img" aria-label="Image placeholder: Ferrari 812 Superfast hero render">
+            <figure class="panel panel--img" role="img" aria-label="Image placeholder: Italio Spydster hero render">
               <div class="panel__inner">
                 <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm1 2v10.6l4-4 3 3 3.5-3.5L19 15.6V6H5Zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/></svg>
                 <span class="panel__kind">Image · Hero render</span>
@@ -394,20 +419,20 @@
               </div>
             </figure>
             <div class="gallery__row">
-              <figure class="panel panel--img panel--square" role="img" aria-label="Ferrari 812 Superfast wireframe placeholder"><div class="panel__inner"><span class="panel__kind">Wireframe</span></div></figure>
-              <figure class="panel panel--img panel--square" role="img" aria-label="Ferrari 812 Superfast detail shot placeholder"><div class="panel__inner"><span class="panel__kind">Detail</span></div></figure>
-              <figure class="panel panel--img panel--square" role="img" aria-label="Ferrari 812 Superfast rear view placeholder"><div class="panel__inner"><span class="panel__kind">Rear</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Italio Spydster wireframe placeholder"><div class="panel__inner"><span class="panel__kind">Wireframe</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Italio Spydster detail shot placeholder"><div class="panel__inner"><span class="panel__kind">Detail</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Italio Spydster rear view placeholder"><div class="panel__inner"><span class="panel__kind">Rear</span></div></figure>
             </div>
           </div>
         </article>
 
         <article class="vehicle reveal" aria-labelledby="v2-title">
           <div class="vehicle__head">
-            <h3 class="vehicle__title" id="v2-title">BMW E36</h3>
+            <h3 class="vehicle__title" id="v2-title">Apex RS</h3>
             <p class="vehicle__sub">Blender · hard surface</p>
           </div>
           <div class="gallery">
-            <figure class="panel panel--img" role="img" aria-label="Image placeholder: BMW E36 hero render">
+            <figure class="panel panel--img" role="img" aria-label="Image placeholder: Apex RS hero render">
               <div class="panel__inner">
                 <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm1 2v10.6l4-4 3 3 3.5-3.5L19 15.6V6H5Zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/></svg>
                 <span class="panel__kind">Image · Hero render</span>
@@ -415,9 +440,9 @@
               </div>
             </figure>
             <div class="gallery__row">
-              <figure class="panel panel--img panel--square" role="img" aria-label="BMW E36 wireframe placeholder"><div class="panel__inner"><span class="panel__kind">Wireframe</span></div></figure>
-              <figure class="panel panel--img panel--square" role="img" aria-label="BMW E36 interior placeholder"><div class="panel__inner"><span class="panel__kind">Interior</span></div></figure>
-              <figure class="panel panel--img panel--square" role="img" aria-label="BMW E36 rear view placeholder"><div class="panel__inner"><span class="panel__kind">Rear</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Apex RS wireframe placeholder"><div class="panel__inner"><span class="panel__kind">Wireframe</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Apex RS interior placeholder"><div class="panel__inner"><span class="panel__kind">Interior</span></div></figure>
+              <figure class="panel panel--img panel--square" role="img" aria-label="Apex RS rear view placeholder"><div class="panel__inner"><span class="panel__kind">Rear</span></div></figure>
             </div>
           </div>
         </article>

@@ -243,14 +243,14 @@ main:focus { outline: none; }
   gap: clamp(1.75rem, 1.25rem + 2vw, 2.5rem);
 }
 
-/* The portrait leads at every width: the page's opening image. */
+/* The portrait leads at every width and matches the project video frames (full column, 16:9). */
 .hero__portrait {
-  width: clamp(9rem, 30vw, 16rem);
+  width: 100%;
   margin: 0;
 }
 .hero__portrait img {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: var(--radius);
 }
@@ -488,15 +488,6 @@ main:focus { outline: none; }
 }
 
 
-.ownership {
-  margin-top: 2rem;
-  padding-left: 1rem;
-  border-left: 1px solid var(--line-strong);
-  color: var(--fg-3);
-  font-size: var(--text-xs);
-  line-height: 1.6;
-}
-.ownership strong { color: var(--fg-2); font-weight: 500; }
 
 .features {
   display: grid;
@@ -1038,11 +1029,6 @@ a.link-arrow:hover::after { color: var(--fg); }
 }
 @media (max-width: 22.5rem) {
   .actions .btn { flex: 1 0 100%; justify-content: center; }
-}
-/* Short landscape phones: portrait beside the text so the name stays above the fold. */
-@media (orientation: landscape) and (max-height: 30rem) and (min-width: 40rem) {
-  .hero { padding-top: calc(var(--header-offset) + 1.5rem); }
-  .hero__layout { grid-template-columns: clamp(9rem, 22vw, 11rem) minmax(0, 1fr); align-items: start; }
 }
 
 /* 12. Motion --------------------------------------------------------------- */
