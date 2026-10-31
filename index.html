@@ -20,9 +20,9 @@
   <meta property="og:image:alt" content="Your Name — Game Developer & Systems Architect"> -->
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/css/styles.css?v=4">
+  <link rel="stylesheet" href="assets/css/styles.css?v=5">
   <script>document.documentElement.classList.add("js");</script>
-  <script src="assets/js/main.js?v=4" defer></script>
+  <script src="assets/js/main.js?v=5" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -72,8 +72,8 @@
           <div class="hero__text">
             <p class="status hero__intro hero__intro--fade" style="--i:1"><span class="status__dot" aria-hidden="true"></span>Open to gameplay &amp; systems roles · Germany · Remote</p>
             <h1 class="hero__name hero__intro" id="hero-name" style="--i:2">Your Name</h1>
-            <p class="hero__headline hero__intro" style="--i:3">Game developer &amp; systems architect. I build the systems a world runs on — and how it looks, plays and sounds.</p>
-            <p class="hero__lede hero__intro hero__intro--fade" style="--i:4">In Godot&nbsp;4 and GDScript&nbsp;2.0 I build voxel/SDF terrain, GPU post effects, multi-body gravity and tactical gameplay — then profile them against the frame budget. I also make the 3D models and write the music.</p>
+            <p class="hero__headline hero__intro" style="--i:3">Game developer &amp; systems architect. I build the systems a world runs on — and how it looks, plays, and sounds.</p>
+            <p class="hero__lede hero__intro hero__intro--fade" style="--i:4">In Godot&nbsp;4 and GDScript&nbsp;2.0 I build voxel/SDF terrain, GPU post effects, multi-body gravity, and tactical gameplay — then profile them against the frame budget. I also make the 3D models and write the music.</p>
 
             <ul class="disciplines hero__intro hero__intro--fade" style="--i:5" aria-label="Disciplines">
               <li>Graphics</li>
@@ -100,7 +100,7 @@
       <header class="section-head reveal">
         <p class="label">01 — Selected work</p>
         <h2 class="section-title" id="work-title">Systems, worlds &amp; simulations</h2>
-        <p class="section-intro">Three Godot&nbsp;4 projects, each told as problem → solution. I state plainly what I wrote, what I adapted and where AI assisted.</p>
+        <p class="section-intro">Three Godot&nbsp;4 projects, each told as problem → solution. I state plainly what I wrote, what I adapted, and where AI assisted.</p>
       </header>
 
       <nav class="work-index reveal" aria-label="Project overview">
@@ -114,7 +114,7 @@
         <header class="reveal">
           <p class="project__index">Project A · Flagship</p>
           <h3 class="project__title" id="pa-title">Voxel &amp; Ocean World</h3>
-          <p class="project__summary">An open, diggable world with a stylised ocean. SDF terrain sits on a voxel material grid, so every dug cell keeps its material — and the shader reads it straight from vertex data, one draw call per chunk.</p>
+          <p class="project__summary">An open, diggable world with a stylized ocean. SDF terrain sits on a voxel material grid, so every dug cell keeps its material — and the shader reads it straight from vertex data, one draw call per chunk.</p>
           <dl class="meta">
             <div><dt>Role</dt><dd>Solo · engine &amp; rendering</dd></div>
             <div><dt>Stack</dt><dd>Godot 4.3+ · Forward+ · GDScript 2.0 · Godot shaders</dd></div>
@@ -147,7 +147,7 @@
             <div class="case__body">
               <div class="ps">
                 <div class="ps__item"><span class="ps__label">Problem</span><p>The reference ocean shaders I found used incompatible wave conventions for displacement and surface orientation — hard to tune, harder to extend.</p></div>
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Consolidated them into one shared Gerstner wave function, with my own wave logic and AI as a sparring partner for the maths. Each call returns displacement and accumulates the derivatives for the normal; four waves are summed in the vertex stage.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Consolidated them into one shared Gerstner wave function, with my own wave logic and AI as a sparring partner for the math. Each call returns displacement and accumulates the derivatives for the normal; four waves are summed in the vertex stage.</p></div>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: ocean waves and foam">
                 <div class="panel__inner">
@@ -157,21 +157,6 @@
                 </div>
               </figure>
             </div>
-            <details class="code">
-              <summary><span class="code__file">ocean.gdshader — Gerstner wave</span><span class="code__lang">gdshader</span></summary>
-<pre><code data-lang="gdshader">// vertex(): start with tangent = vec3(1, 0, 0), binormal = vec3(0, 0, 1),
-// then accumulate four waves. wave = direction.xy, steepness, wavelength.
-vec3 gerstner(vec4 wave, vec3 p, inout vec3 tangent, inout vec3 binormal) {
-    float k = TAU / wave.w;
-    float c = sqrt(9.81 / k);
-    vec2 d = normalize(wave.xy);
-    float f = k * (dot(d, p.xz) - c * TIME);
-    float a = wave.z / k;
-    tangent  += vec3(-d.x * d.x * wave.z * sin(f), d.x * wave.z * cos(f), -d.x * d.y * wave.z * sin(f));
-    binormal += vec3(-d.x * d.y * wave.z * sin(f), d.y * wave.z * cos(f), -d.y * d.y * wave.z * sin(f));
-    return vec3(d.x * a * cos(f), a * sin(f), d.y * a * cos(f));
-}</code></pre>
-            </details>
           </section>
 
           <section class="case reveal" aria-labelledby="pa-c2">
@@ -183,7 +168,7 @@ vec3 gerstner(vec4 wave, vec3 p, inout vec3 tangent, inout vec3 binormal) {
               <div class="ps">
                 <div class="ps__item"><span class="ps__label">Problem</span><p>An SDF encodes distance to a surface, not what it's made of. Separate meshes per material multiply draw calls — and digging still has to reveal the right material underneath.</p></div>
                 <!-- TODO(owner): add chunk size, meshing thread (e.g. WorkerThreadPool) and remesh time per edit. -->
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A parallel voxel grid stores material IDs. For every emitted triangle the mesher repeats one ID across the <code>CUSTOM0</code> values of all three vertices; a flat varying then selects a layer of a single Texture2DArray — one material, one draw call per chunk.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A parallel voxel grid stores material IDs. For every emitted triangle, the mesher repeats one ID across the CUSTOM0 values of all three vertices; a flat varying then selects a layer of a single Texture2DArray — one material, one draw call per chunk.</p></div>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: digging reveals voxel materials">
                 <div class="panel__inner">
@@ -193,29 +178,6 @@ vec3 gerstner(vec4 wave, vec3 p, inout vec3 tangent, inout vec3 binormal) {
                 </div>
               </figure>
             </div>
-            <details class="code">
-              <summary><span class="code__file">terrain.gdshader — material from vertex data</span><span class="code__lang">gdshader</span></summary>
-<pre><code data-lang="gdshader">shader_type spatial;
-
-uniform sampler2DArray materials : source_color, filter_linear_mipmap_anisotropic;
-varying flat float mat_id;   // one material per triangle, written by the mesher
-varying vec3 w_pos;
-varying vec3 w_nrm;
-
-void vertex() {
-    mat_id = CUSTOM0.x;
-    w_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-    w_nrm = normalize(MODEL_NORMAL_MATRIX * NORMAL);
-}
-
-void fragment() {
-    vec3 b = pow(abs(w_nrm), vec3(4.0));
-    b /= b.x + b.y + b.z;   // triplanar weights
-    ALBEDO = texture(materials, vec3(w_pos.zy * 0.25, mat_id)).rgb * b.x
-           + texture(materials, vec3(w_pos.xz * 0.25, mat_id)).rgb * b.y
-           + texture(materials, vec3(w_pos.xy * 0.25, mat_id)).rgb * b.z;
-}</code></pre>
-            </details>
           </section>
 
           <section class="case reveal" aria-labelledby="pa-c3">
@@ -226,7 +188,7 @@ void fragment() {
             <div class="case__body">
               <div class="ps">
                 <div class="ps__item"><span class="ps__label">Problem</span><p>Volumetric-looking skies usually mean extra geometry or heavy fog volumes that fight with the ocean and terrain shading.</p></div>
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A <code>CompositorEffect</code> raymarches clouds on the GPU after transparency, straight into the camera's colour buffer — no scene geometry, toggleable per camera.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A CompositorEffect raymarches clouds on the GPU after transparency, straight into the camera's color buffer — no scene geometry, toggleable per camera.</p></div>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: compositor clouds">
                 <div class="panel__inner">
@@ -236,30 +198,15 @@ void fragment() {
                 </div>
               </figure>
             </div>
-            <details class="code">
-              <summary><span class="code__file">clouds_effect.gd — render callback</span><span class="code__lang">GDScript 2.0</span></summary>
-<pre><code data-lang="gdscript">@tool
-class_name CloudsEffect
-extends CompositorEffect
-
-func _render_callback(type: int, data: RenderData) -&gt; void:
-    if type != EFFECT_CALLBACK_TYPE_POST_TRANSPARENT:
-        return
-    var buffers := data.get_render_scene_buffers() as RenderSceneBuffersRD
-    var size := buffers.get_internal_size()
-    var groups := Vector3i(ceili(size.x / 8.0), ceili(size.y / 8.0), 1)
-    for view in buffers.get_view_count():
-        var color := buffers.get_color_layer(view)
-        _dispatch_raymarch(color, data.get_render_scene_data(), groups)</code></pre>
-            </details>
           </section>
         </div>
 
-        <p class="ownership reveal"><strong>Built:</strong> voxel data model, SDF mesher, material pipeline, compositor effect and profiling. <strong>Adapted:</strong> base Gerstner wave equations from public shader examples; I rewrote the conventions and derivative accumulation. <strong>AI:</strong> helped derive and cross-check the wave derivatives and suggested refactors — I reviewed every change and validated it visually and with profiler captures.</p>
+        <p class="ownership reveal"><strong>Built:</strong> voxel data model, SDF mesher, material pipeline, compositor effect, and profiling. <strong>Adapted:</strong> base Gerstner wave equations from public shader examples; I rewrote the conventions and derivative accumulation. <strong>AI:</strong> helped derive and cross-check the wave derivatives and suggested refactors — I reviewed every change and validated it visually and with profiler captures.</p>
 
         <div class="project__links reveal">
-          <span class="link-arrow link-arrow--soon">Source</span>
-          <span class="link-arrow link-arrow--soon">Devlog</span>
+          <!-- TODO(owner): replace href with the project's repository URL -->
+          <a class="link-arrow" href="https://github.com/WasgehtSiedasan2205?tab=repositories" rel="noopener" target="_blank">GitHub repository<span class="visually-hidden"> (opens in a new tab)</span></a>
+          <a class="link-arrow" href="https://github.com/WasgehtSiedasan2205/VolumetricClouds" rel="noopener" target="_blank">Clouds repository<span class="visually-hidden"> (opens in a new tab)</span></a>
         </div>
       </article>
 
@@ -268,7 +215,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         <header class="reveal">
           <p class="project__index">Project B</p>
           <h3 class="project__title" id="pb-title">Tactical Shooter</h3>
-          <p class="project__summary">A grounded tactical shooter prototype: COD-inspired weapon handling, a Tarkov-style grid inventory, physics-based building, and weather and time-of-day systems that drive lighting, VFX and audio together.</p>
+          <p class="project__summary">A grounded tactical shooter prototype: COD-inspired weapon handling, a Tarkov-style grid inventory, physics-based building, and weather and time-of-day systems that drive lighting, VFX, and audio together.</p>
           <dl class="meta">
             <div><dt>Role</dt><dd>Solo · gameplay systems</dd></div>
             <div><dt>Stack</dt><dd>Godot 4 · GDScript 2.0 · Godot shaders</dd></div>
@@ -286,12 +233,12 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         </div>
 
         <ul class="features reveal" aria-label="Feature set">
-          <li class="feature"><h4>Gunplay</h4><p>Recoil curves, ADS transitions, spread and sway tuned as one handling model.</p></li>
-          <li class="feature"><h4>Grid inventory</h4><p>Tarkov-style shaped items, rotation and nested containers.</p></li>
+          <li class="feature"><h4>Gunplay</h4><p>Recoil curves, ADS transitions, spread, and sway tuned as one handling model.</p></li>
+          <li class="feature"><h4>Grid inventory</h4><p>Tarkov-style shaped items, rotation, and nested containers.</p></li>
           <li class="feature"><h4>Rigidbody building</h4><p>Physics-driven placement with snapping and stable stacking.</p></li>
-          <li class="feature"><h4>Weather</h4><p>Rain, wind and fog driving lighting, audio and VFX.</p></li>
-          <li class="feature"><h4>Day / night</h4><p>Continuous sun, sky and ambient cycle.</p></li>
-          <li class="feature"><h4>Screen-space VFX</h4><p>Hits, rain on the lens and suppression feedback as post effects.</p></li>
+          <li class="feature"><h4>Weather</h4><p>Rain, wind, and fog driving lighting, audio, and VFX.</p></li>
+          <li class="feature"><h4>Day / night</h4><p>A continuous cycle for sun, sky, and ambient light.</p></li>
+          <li class="feature"><h4>Screen-space VFX</h4><p>Hits, rain on the lens, and suppression feedback as post effects.</p></li>
         </ul>
 
         <div class="cases">
@@ -302,7 +249,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
             </div>
             <div class="case__body">
               <div class="ps">
-                <div class="ps__item"><span class="ps__label">Problem</span><p>Shaped items, rotation and containers inside containers: placement has to reject overlaps and out-of-bounds drops consistently — live, while dragging.</p></div>
+                <div class="ps__item"><span class="ps__label">Problem</span><p>Shaped items, rotation, and containers inside containers: placement has to reject overlaps and out-of-bounds drops consistently — live, while dragging.</p></div>
                 <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Each container owns a flat occupancy grid. Placement bounds-checks the rotated footprint, then scans only the cells it covers; nested containers keep independent grids.</p></div>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: dragging and rotating inventory items">
@@ -313,18 +260,6 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
                 </div>
               </figure>
             </div>
-            <details class="code">
-              <summary><span class="code__file">inventory_grid.gd — placement test</span><span class="code__lang">GDScript 2.0</span></summary>
-<pre><code data-lang="gdscript">func can_place(item: ItemData, cell: Vector2i, rotated: bool) -&gt; bool:
-    var size := Vector2i(item.size.y, item.size.x) if rotated else item.size
-    if cell.x &lt; 0 or cell.y &lt; 0 or cell.x + size.x &gt; width or cell.y + size.y &gt; height:
-        return false
-    for y in size.y:
-        for x in size.x:
-            if _cells[(cell.y + y) * width + cell.x + x] != null:
-                return false
-    return true</code></pre>
-            </details>
           </section>
 
           <section class="case reveal" aria-labelledby="pb-c2">
@@ -349,7 +284,8 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         </div>
 
         <div class="project__links reveal">
-          <span class="link-arrow link-arrow--soon">Source</span>
+          <!-- TODO(owner): replace href with the project's repository URL -->
+          <a class="link-arrow" href="https://github.com/WasgehtSiedasan2205?tab=repositories" rel="noopener" target="_blank">GitHub repository<span class="visually-hidden"> (opens in a new tab)</span></a>
           <span class="link-arrow link-arrow--soon">Playable build</span>
         </div>
       </article>
@@ -395,22 +331,6 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
                 </div>
               </figure>
             </div>
-            <details class="code">
-              <summary><span class="code__file">trajectory.gd — prediction loop</span><span class="code__lang">GDScript 2.0</span></summary>
-<pre><code data-lang="gdscript">func predict(start: BodyState, steps: int, dt: float) -&gt; PackedVector3Array:
-    var points := PackedVector3Array()
-    points.resize(steps)
-    var sim := _world.duplicate_state()   # ghost copy: planets move too
-    var p := start.position
-    var v := start.velocity
-    for i in steps:
-        var a := sim.gravity_at(p)
-        v += a * dt                       # same integrator as the live sim
-        p += v * dt
-        sim.step(dt)
-        points[i] = p
-    return points</code></pre>
-            </details>
           </section>
 
           <section class="case reveal" aria-labelledby="pc-c2">
@@ -421,7 +341,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
             <div class="case__body">
               <div class="ps">
                 <div class="ps__item"><span class="ps__label">Problem</span><p>Normal launches hide integrator errors — gravity is gentle and steps are small compared to the forces involved.</p></div>
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Starting on the sun's surface is a deliberate high-acceleration regression case: predicted and live trajectories are compared over the same horizon. Close approaches, timestep and long-duration runs cover the other failure modes.</p></div>
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Starting on the sun's surface is a deliberate high-acceleration regression case: predicted and live trajectories are compared over the same horizon. Close approaches, timestep variation, and long-duration runs cover the other failure modes.</p></div>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: rocket escaping from the sun">
                 <div class="panel__inner">
@@ -435,7 +355,8 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         </div>
 
         <div class="project__links reveal">
-          <span class="link-arrow link-arrow--soon">Source</span>
+          <!-- TODO(owner): replace href with the project's repository URL -->
+          <a class="link-arrow" href="https://github.com/WasgehtSiedasan2205?tab=repositories" rel="noopener" target="_blank">GitHub repository<span class="visually-hidden"> (opens in a new tab)</span></a>
           <span class="link-arrow link-arrow--soon">Playable build</span>
         </div>
       </article>
@@ -445,9 +366,9 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
     <section class="section wrap" id="models" aria-labelledby="models-title">
       <header class="section-head reveal">
         <p class="label">02 — 3D</p>
-        <h2 class="section-title" id="models-title">Vehicles, modelled in Blender</h2>
+        <h2 class="section-title" id="models-title">Vehicles, modeled in Blender</h2>
         <!-- TODO(owner): add LOD0 triangle counts, material slots and texture resolution per vehicle. -->
-        <p class="section-intro">Hard-surface studies built for real-time use: game-ready topology, PBR materials and baked detail, authored in Blender.</p>
+        <p class="section-intro">Hard-surface studies built for real-time use: game-ready topology, PBR materials, and baked detail, authored in Blender.</p>
       </header>
 
       <div class="vehicles">
@@ -500,7 +421,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
       <header class="section-head reveal">
         <p class="label">03 — Audio</p>
         <h2 class="section-title" id="audio-title">Music &amp; sound</h2>
-        <p class="section-intro">I write the music for my own projects. Themes, loops and ambiences — composed, produced and mixed myself.</p>
+        <p class="section-intro">I write the music for my own projects. Themes, loops, and ambiences — composed, produced, and mixed myself.</p>
       </header>
 
       <!-- To add a track: copy an <li>, set data-src (file in assets/audio/), title, context and duration. -->
@@ -553,7 +474,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
       </header>
       <div class="prose reveal">
         <p>I'm a game developer who likes the parts most people treat as black boxes: how terrain becomes triangles, how a wave becomes a normal, how three planets decide where a rocket ends up.</p>
-        <p>I work in Godot&nbsp;4 with GDScript&nbsp;2.0 and validate systems with profiler captures, regression scenes and hands-on tuning. When a system holds up, I model its assets in Blender and write the music that plays over it.</p>
+        <p>I work in Godot&nbsp;4 with GDScript&nbsp;2.0 and validate systems with profiler captures, regression scenes, and hands-on tuning. When a system holds up, I model its assets in Blender and write the music that plays over it.</p>
       </div>
       <dl class="facts reveal">
         <div><dt>Engine</dt><dd>Godot 4</dd></div>
@@ -574,7 +495,6 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         <a class="contact__mail" href="mailto:hello@example.com">hello@example.com</a>
         <nav class="contact__links" aria-label="Profiles">
           <a href="https://github.com/WasgehtSiedasan2205" rel="me noopener" target="_blank"><span>GitHub<span class="visually-hidden"> (opens in a new tab)</span></span><span>@WasgehtSiedasan2205</span></a>
-          <a href="https://www.linkedin.com/in/your-handle" rel="me noopener" target="_blank"><span>LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></span><span>/in/your-handle</span></a>
           <!-- When the PDF exists: <a href="assets/resume.pdf" download><span>Résumé</span><span>PDF</span></a> -->
           <span class="is-soon"><span>Résumé</span><span>PDF · soon</span></span>
         </nav>

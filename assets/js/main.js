@@ -21,7 +21,7 @@
     const update = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       header.classList.toggle("is-scrolled", window.scrollY > 8);
-      header.style.setProperty("--progress", max > 0 ? Math.min(1, window.scrollY / max).toFixed(4) : "0");
+      header.style.setProperty("--progress", max > 0 ? Math.max(0, Math.min(1, window.scrollY / max)).toFixed(4) : "0");
       ticking = false;
     };
     const queue = () => {
@@ -66,77 +66,26 @@
       });
     };
 
-    // A thin band in the middle of the viewport decides which section is "current".
+    // A thin band in the middle of the viewport decides which section is "current";
+    // the short last section wins while the footer is half visible.
+    let bandId = "";
+    let footerOwns = false;
     const io = new IntersectionObserver((entries) => {
       for (const entry of entries) {
-        if (entry.isIntersecting) setActive(entry.target.id);
+        if (!entry.isIntersecting) continue;
+        bandId = entry.target.id;
+        if (!footerOwns) setActive(bandId);
       }
     }, { rootMargin: "-45% 0px -50% 0px" });
     targets.forEach((s) => io.observe(s));
 
-    // The last section is short: once the footer shows, Contact is current.
     const footer = $(".site-footer");
     if (footer && byId.has("contact")) {
-      new IntersectionObserver(([e]) => { if (e.isIntersecting) setActive("contact"); }, { threshold: 0.5 }).observe(footer);
+      new IntersectionObserver(([e]) => {
+        footerOwns = e.intersectionRatio >= 0.5;
+        setActive(footerOwns ? "contact" : bandId);
+      }, { threshold: [0, 0.5] }).observe(footer);
     }
-  }
-
-  /* ------------------------------------------------------------ Syntax highlight */
-  const GD_KEYWORDS = new Set("func var const if elif else for in while return extends class_name class and or not match break continue pass signal enum static self super await as is preload true false null".split(" "));
-  const GD_TYPES = new Set("int float bool void".split(" "));
-  const SHADER_KEYWORDS = new Set("shader_type render_mode uniform varying flat smooth void return if else for while in out inout const discard true false".split(" "));
-  const SHADER_TYPES = new Set("float int uint bool vec2 vec3 vec4 ivec2 ivec3 ivec4 mat2 mat3 mat4 sampler2D sampler2DArray sampler3D samplerCube spatial canvas_item".split(" "));
-
-  const escapeHtml = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
-
-  // Groups: 1 comment · 2 string · 3 annotation (GDScript only) · 4 number · 5 identifier
-  const TOKEN_RE = {
-    gdscript: /(#[^\n]*)|("(?:[^"\\\n]|\\.)*")|(@\w+)|(\b\d+(?:\.\d+)?\b)|([A-Za-z_]\w*)/g,
-    gdshader: /(\/\/[^\n]*)|("(?:[^"\\\n]|\\.)*")|(@\w+)|(\b\d+(?:\.\d+)?\b)|([A-Za-z_]\w*)/g,
-  };
-
-  function highlight(code, lang) {
-    const re = TOKEN_RE[lang];
-    if (!re) return escapeHtml(code);
-    const isShader = lang === "gdshader";
-    const keywords = isShader ? SHADER_KEYWORDS : GD_KEYWORDS;
-    const types = isShader ? SHADER_TYPES : GD_TYPES;
-    re.lastIndex = 0;
-
-    let out = "";
-    let last = 0;
-    let m;
-    while ((m = re.exec(code))) {
-      out += escapeHtml(code.slice(last, m.index));
-      last = re.lastIndex;
-      const tok = m[0];
-      let cls = "";
-      if (m[1]) cls = "c";
-      else if (m[2]) cls = "s";
-      else if (m[3]) cls = "a";
-      else if (m[4]) cls = "n";
-      else if (keywords.has(tok)) cls = "k";
-      else if (types.has(tok) || (/^[A-Z]/.test(tok) && /[a-z]/.test(tok))) cls = "t";
-      else if (/^[A-Z][A-Z0-9_]+$/.test(tok)) cls = "a";
-      else if (/^\s*\(/.test(code.slice(last, last + 8))) cls = "f";
-      out += cls ? `<span class="tok-${cls}">${escapeHtml(tok)}</span>` : escapeHtml(tok);
-    }
-    return out + escapeHtml(code.slice(last));
-  }
-
-  // Highlight lazily: only when a code sample is first opened.
-  function initCode() {
-    const paint = (el) => {
-      if (el.dataset.highlighted) return;
-      el.innerHTML = highlight(el.textContent, el.dataset.lang);
-      el.dataset.highlighted = "true";
-    };
-    $$("details.code").forEach((details) => {
-      const code = $("code[data-lang]", details);
-      if (!code) return;
-      if (details.open) paint(code);
-      details.addEventListener("toggle", () => { if (details.open) paint(code); });
-    });
   }
 
   /* ------------------------------------------------------------ YouTube facade */
@@ -487,7 +436,7 @@
         media.muted = true;
         media.playsInline = true;
         media.removeAttribute("autoplay");
-        if (media.poster || media.readyState >= 2) loaded();
+        if (media.readyState >= 2) loaded();
         else media.addEventListener("loadeddata", loaded, { once: true });
         // With <source> children the error fires on the last source, not on the video.
         ($("source:last-of-type", media) || media).addEventListener("error", failed, { once: true });
@@ -516,5 +465,4 @@
   initPlayer();
   initPanelMedia();
   initYear();
-  initCode();
 })();
