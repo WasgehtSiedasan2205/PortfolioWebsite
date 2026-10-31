@@ -461,7 +461,6 @@ main:focus { outline: none; }
 }
 .tag + .tag::before { content: "/"; margin-right: 0.5rem; color: var(--fg-4); }
 .tag--own { color: var(--fg-2); }
-.tag--ai { color: var(--gif-ink); }
 
 .case__body { display: grid; gap: 1.25rem; }
 
@@ -479,6 +478,8 @@ main:focus { outline: none; }
 .ps__item--solution .ps__label { color: var(--fg-2); }
 .ps__item p { margin-top: 0.45rem; font-size: var(--text-md); line-height: 1.6; }
 .ps__item--solution p { color: var(--fg); }
+/* A second problem → solution pair inside one case gets a hairline separator. */
+.ps__item--solution + .ps__item:not(.ps__item--solution) { padding-top: 1.25rem; border-top: 1px solid var(--line); }
 .ps__keys { color: var(--fg-3); font-size: var(--text-xs); line-height: 1.55; }
 .ps__keys span { display: block; margin-bottom: 0.2rem; color: var(--fg-3); font: var(--label-sm); letter-spacing: var(--label-track); text-transform: uppercase; }
 
@@ -576,7 +577,6 @@ a.link-arrow:hover::after { color: var(--fg); }
   isolation: isolate;
 }
 .panel--square { aspect-ratio: 1; }
-.panel--portrait { aspect-ratio: 4 / 5; }
 .panel--gif { background: var(--gif-bg); border-color: var(--gif-border); color: var(--gif-ink); }
 .panel--img { background: var(--img-bg); border-color: var(--img-border); color: var(--img-ink); }
 

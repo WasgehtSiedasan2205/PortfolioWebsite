@@ -1,6 +1,6 @@
 # Portfolio
 
-Static, dependency-free portfolio site. Open `index.html` directly in a browser or host the folder on any static host (GitHub Pages, Netlify, …).
+Static, dependency-free portfolio site. Open `index.html` directly in a browser or host the folder statically. `404.html` assumes GitHub Pages at `/PortfolioWebsite/`; adjust its paths for other hosts.
 
 ```
 index.html            all content

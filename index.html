@@ -20,9 +20,9 @@
   <meta property="og:image:alt" content="Your Name — Game Developer & Systems Architect"> -->
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/css/styles.css?v=8">
+  <link rel="stylesheet" href="assets/css/styles.css?v=9">
   <script>document.documentElement.classList.add("js");</script>
-  <script src="assets/js/main.js?v=8" defer></script>
+  <script src="assets/js/main.js?v=9" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -56,7 +56,7 @@
 
     <!-- ===================================================== 1. HERO -->
     <section class="hero wrap" aria-labelledby="hero-name">
-      <div class="hero__grid">
+      <div>
         <div class="hero__layout">
           <!-- Replace the panel with:
                <img src="assets/img/portrait.jpg" width="1280" height="720" alt="Portrait of Your Name" fetchpriority="high" decoding="async">  (16:9, e.g. 1280×720) -->
@@ -100,7 +100,7 @@
       <header class="section-head reveal">
         <p class="label">01 — Selected work</p>
         <h2 class="section-title" id="work-title">Systems, worlds &amp; simulations</h2>
-        <p class="section-intro">Three Godot&nbsp;4 projects, each told as problem → solution — with a link to the repository.</p>
+        <p class="section-intro">Three Godot&nbsp;4 projects, each presented as a problem–solution case study, with links to the repositories.</p>
       </header>
 
       <nav class="work-index reveal" aria-label="Project overview">
@@ -147,7 +147,7 @@
             </div>
             <div class="case__body">
               <div class="ps">
-                <div class="ps__item"><span class="ps__label">Problem</span><p>My first ocean summed a handful of Gerstner waves. It was cheap, but repetitive and flat up close — and adding more waves for detail costs vertex work fast.</p></div>
+                <div class="ps__item"><span class="ps__label">Problem</span><p>My first ocean summed a handful of Gerstner waves. It was cheap, but repetitive and flat up close — and adding more waves for detail quickly increases vertex-processing cost.</p></div>
                 <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Replaced it with an FFT ocean: a few GLSL compute shaders build the spectrum and transform it into displacement and normal maps every frame — thousands of waves at a fixed cost, so fidelity and performance go up together.</p></div>
                 <div class="ps__item"><span class="ps__label">Problem</span><p>Physically driven surfaces still produce artifacts — tiling, harsh normal sparkle, noisy foam — that pull the eye away from the scene.</p></div>
                 <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>The surface shading is deliberately stylized and cheats a little where it helps: artifacts are softened before they reach the image, so the ocean reads as calm, believable water and keeps the player immersed.</p></div>
@@ -285,7 +285,7 @@
                 <div class="panel__inner">
                   <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 3h8v8H3V3Zm10 0h8v4h-8V3Zm0 6h8v12h-8V9ZM3 13h8v8H3v-8Z"/></svg>
                   <span class="panel__kind">GIF · UI system</span>
-                  <span class="panel__desc">Drag, rotate and nest items in the grid</span>
+                  <span class="panel__desc">Drag, rotate, and nest items in the grid</span>
                 </div>
               </figure>
             </div>
@@ -298,7 +298,7 @@
             </div>
             <div class="case__body">
               <div class="ps">
-                <div class="ps__item"><span class="ps__label">Problem</span><p>Fully simulated building pieces jitter, drift and get expensive once players stack dozens of them.</p></div>
+                <div class="ps__item"><span class="ps__label">Problem</span><p>Fully simulated building pieces jitter, drift, and become expensive once players stack dozens of them.</p></div>
                 <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>Pieces snap to sockets, stay dynamic while settling, and sleep at rest. Disturbances wake only the affected bodies — idle cost drops without losing physical interaction.</p></div>
                 <p class="ps__keys"><span>Key techniques</span> Socket snapping · physics settling · sleep at rest · wake on disturbance</p>
               </div>
@@ -306,7 +306,7 @@
                 <div class="panel__inner">
                   <svg class="panel__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 17h7v4H3v-4Zm11 0h7v4h-7v-4ZM7 11h10v4H7v-4Zm2-6h6v4H9V5Z"/></svg>
                   <span class="panel__kind">GIF · Physics</span>
-                  <span class="panel__desc">Snap, stack and knock down a structure</span>
+                  <span class="panel__desc">Snap, stack, and knock down a structure</span>
                 </div>
               </figure>
             </div>
@@ -408,7 +408,7 @@
         <article class="vehicle reveal" aria-labelledby="v1-title">
           <div class="vehicle__head">
             <h3 class="vehicle__title" id="v1-title">Italio Spydster</h3>
-            <p class="vehicle__sub">Blender · hard surface</p>
+            <p class="vehicle__sub">Blender · hard-surface</p>
           </div>
           <div class="gallery">
             <figure class="panel panel--img" role="img" aria-label="Image placeholder: Italio Spydster hero render">
@@ -429,7 +429,7 @@
         <article class="vehicle reveal" aria-labelledby="v2-title">
           <div class="vehicle__head">
             <h3 class="vehicle__title" id="v2-title">Apex RS</h3>
-            <p class="vehicle__sub">Blender · hard surface</p>
+            <p class="vehicle__sub">Blender · hard-surface</p>
           </div>
           <div class="gallery">
             <figure class="panel panel--img" role="img" aria-label="Image placeholder: Apex RS hero render">
