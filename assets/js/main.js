@@ -19,12 +19,16 @@
     if (!header) return;
     let ticking = false;
     const update = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
       header.classList.toggle("is-scrolled", window.scrollY > 8);
+      header.style.setProperty("--progress", max > 0 ? Math.min(1, window.scrollY / max).toFixed(4) : "0");
       ticking = false;
     };
-    window.addEventListener("scroll", () => {
+    const queue = () => {
       if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    }, { passive: true });
+    };
+    window.addEventListener("scroll", queue, { passive: true });
+    window.addEventListener("resize", queue, { passive: true });
     update();
   }
 
@@ -69,6 +73,12 @@
       }
     }, { rootMargin: "-45% 0px -50% 0px" });
     targets.forEach((s) => io.observe(s));
+
+    // The last section is short: once the footer shows, Contact is current.
+    const footer = $(".site-footer");
+    if (footer && byId.has("contact")) {
+      new IntersectionObserver(([e]) => { if (e.isIntersecting) setActive("contact"); }, { threshold: 0.5 }).observe(footer);
+    }
   }
 
   /* ------------------------------------------------------------ Syntax highlight */
@@ -114,12 +124,19 @@
     return out + escapeHtml(code.slice(last));
   }
 
+  // Highlight lazily: only when a code sample is first opened.
   function initCode() {
-    const run = () => $$("code[data-lang]").forEach((el) => {
+    const paint = (el) => {
+      if (el.dataset.highlighted) return;
       el.innerHTML = highlight(el.textContent, el.dataset.lang);
+      el.dataset.highlighted = "true";
+    };
+    $$("details.code").forEach((details) => {
+      const code = $("code[data-lang]", details);
+      if (!code) return;
+      if (details.open) paint(code);
+      details.addEventListener("toggle", () => { if (details.open) paint(code); });
     });
-    if ("requestIdleCallback" in window) requestIdleCallback(run, { timeout: 1500 });
-    else setTimeout(run, 200);
   }
 
   /* ------------------------------------------------------------ YouTube facade */
@@ -130,16 +147,12 @@
       const id = (box.dataset.ytId || "").trim();
       const title = box.dataset.ytTitle || "Video";
       const btn = $(".video__btn", box);
-      const caption = $(".video__caption", box);
       if (!btn) return;
 
-      if (!/^[\w-]{11}$/.test(id)) {
-        box.classList.add("is-pending");
-        btn.disabled = true;
-        btn.setAttribute("aria-label", `${title} — video coming soon`);
-        if (caption) caption.textContent = `${caption.textContent} · coming soon`;
-        return;
-      }
+      // Pending ("coming soon") is the static HTML default; only upgrade when a valid ID exists.
+      if (!/^[\w-]{11}$/.test(id)) return;
+      box.classList.remove("is-pending");
+      btn.disabled = false;
 
       const poster = new Image();
       poster.className = "video__poster";
@@ -304,48 +317,64 @@
 
     function markMissing(i) {
       const t = tracks[i];
+      if (t.classList.contains("is-missing")) return;
       t.classList.add("is-missing");
       $(".track__btn", t).disabled = true;
       console.warn(`[audio] Missing file: ${t.dataset.src}`);
     }
 
+    function setPlaybackState(state) {
+      if ("mediaSession" in navigator) navigator.mediaSession.playbackState = state;
+    }
+
     function refreshAvailability() {
-      const anyAvailable = tracks.some((_, i) => isAvailable(i));
-      root.classList.toggle("is-empty", !anyAvailable);
-      ui.toggle.disabled = !anyAvailable;
-      ui.prev.disabled = ui.next.disabled = tracks.filter((_, i) => isAvailable(i)).length < 2;
-      if (!anyAvailable) {
+      const available = tracks.filter((_, i) => isAvailable(i)).length;
+      root.classList.toggle("is-empty", available === 0);
+      ui.toggle.disabled = available === 0;
+      ui.prev.disabled = ui.next.disabled = available < 2;
+      if (available === 0) {
         say("Tracks are being mastered — coming soon.");
         ui.title.textContent = "Coming soon";
         ui.ctx.textContent = `${tracks.length} tracks in preparation`;
+        ui.duration.textContent = "0:00";
+        if ("mediaSession" in navigator) navigator.mediaSession.metadata = null;
+        setPlaybackState("none");
       } else if (!isAvailable(index) && audio.paused) {
+        if (loaded === index) unload();
         select(nextAvailable(index, 1, true));
       }
     }
 
-    // Check which files exist (metadata only) and fill in their real durations.
+    // Check which files exist (metadata only, one at a time) and fill in their real durations.
     function probe() {
       if (probed) return;
       probed = true;
-      let pending = tracks.length;
-      const done = () => { if (--pending === 0) refreshAvailability(); };
-      tracks.forEach((t, i) => {
-        const a = new Audio();
-        a.preload = "metadata";
-        a.addEventListener("loadedmetadata", () => {
-          if (Number.isFinite(a.duration)) {
-            durEl(i).textContent = fmt(a.duration);
-            if (i === index) ui.duration.textContent = fmt(a.duration);
-          }
-          a.removeAttribute("src");
-          done();
-        }, { once: true });
-        a.addEventListener("error", () => { markMissing(i); done(); }, { once: true });
-        a.src = t.dataset.src;
+      const a = new Audio();
+      a.preload = "metadata";
+      let i = -1;
+      const nextProbe = () => {
+        i += 1;
+        if (i >= tracks.length) { a.removeAttribute("src"); a.load(); return; }
+        if (!isAvailable(i)) { nextProbe(); return; }   // already failed during playback
+        a.src = tracks[i].dataset.src;
+      };
+      a.addEventListener("loadedmetadata", () => {
+        if (Number.isFinite(a.duration)) {
+          durEl(i).textContent = fmt(a.duration);
+          if (i === index && loaded !== index) ui.duration.textContent = fmt(a.duration);
+        }
+        nextProbe();
       });
+      a.addEventListener("error", () => {
+        if (!a.getAttribute("src")) return;
+        markMissing(i);
+        refreshAvailability();
+        nextProbe();
+      });
+      nextProbe();
     }
     if (hasIO) {
-      const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); probe(); } }, { rootMargin: "600px 0px" });
+      const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); probe(); } }, { rootMargin: "200px 0px" });
       io.observe(root);
     } else {
       probe();
@@ -377,8 +406,11 @@
     ["pointerup", "pointercancel", "blur"].forEach((type) => ui.seek.addEventListener(type, endScrub));
 
     // Media events
-    audio.addEventListener("play", () => { root.classList.add("is-playing"); ui.toggle.setAttribute("aria-label", "Pause"); });
-    audio.addEventListener("pause", () => { root.classList.remove("is-playing"); ui.toggle.setAttribute("aria-label", "Play"); });
+    const setBuffering = (on) => root.classList.toggle("is-buffering", on);
+    audio.addEventListener("play", () => { root.classList.add("is-playing"); ui.toggle.setAttribute("aria-label", "Pause"); setPlaybackState("playing"); });
+    audio.addEventListener("pause", () => { root.classList.remove("is-playing"); ui.toggle.setAttribute("aria-label", "Play"); setPlaybackState("paused"); setBuffering(false); });
+    audio.addEventListener("waiting", () => setBuffering(true));
+    audio.addEventListener("playing", () => setBuffering(false));
     audio.addEventListener("loadedmetadata", () => {
       ui.seek.disabled = false;
       ui.duration.textContent = fmt(audio.duration);
@@ -390,8 +422,9 @@
       else { audio.currentTime = 0; schedulePaint(); }
     });
     audio.addEventListener("error", () => {
-      if (!audio.getAttribute("src")) return;
-      const failed = index;
+      const failed = loaded;
+      if (!audio.getAttribute("src") || failed < 0) return;
+      setBuffering(false);
       root.classList.remove("is-playing");
       ui.toggle.setAttribute("aria-label", "Play");
       unload();
@@ -402,6 +435,27 @@
 
     onMediaClaim(root, pause);
     select(0);
+  }
+
+  /* ------------------------------------------------------------ Panel media */
+  // Real images/videos inside placeholder panels fade in once loaded; on failure the placeholder stays.
+  function initPanelMedia() {
+    $$(".panel > img, .panel > video").forEach((media) => {
+      const panel = media.parentElement;
+      const loaded = () => panel.classList.add("is-loaded");
+      const failed = () => {
+        const desc = $(".panel__desc", panel);
+        if (desc) desc.textContent = "Preview unavailable";
+        console.warn(`[media] Failed to load: ${media.currentSrc || media.getAttribute("src")}`);
+      };
+      const isVideo = media.tagName === "VIDEO";
+      if (isVideo ? media.readyState >= 2 : media.complete && media.naturalWidth > 0) loaded();
+      else if (!isVideo && media.complete) failed();
+      else {
+        media.addEventListener(isVideo ? "loadeddata" : "load", loaded, { once: true });
+        media.addEventListener("error", failed, { once: true });
+      }
+    });
   }
 
   /* ------------------------------------------------------------ Misc */
@@ -415,6 +469,7 @@
   initNav();
   initVideos();
   initPlayer();
+  initPanelMedia();
   initYear();
   initCode();
 })();

@@ -52,7 +52,7 @@
             <p class="status hero__intro hero__intro--fade" style="--i:1"><span class="status__dot" aria-hidden="true"></span>Open to roles · Germany · Remote EU</p>
             <h1 class="hero__name hero__intro" id="hero-name" style="--i:2">Your Name</h1>
             <p class="hero__headline hero__intro" style="--i:3">Game developer &amp; systems architect. I build the systems a world runs on — and how it looks, plays and sounds.</p>
-            <p class="hero__lede hero__intro hero__intro--fade" style="--i:4">Godot&nbsp;4 and GDScript&nbsp;2.0: voxel/SDF terrain, custom shaders, N-body physics and tactical gameplay — built, profiled and tuned as one coherent whole. Plus the 3D models and the music.</p>
+            <p class="hero__lede hero__intro hero__intro--fade" style="--i:4">In Godot&nbsp;4 and GDScript&nbsp;2.0 I build voxel/SDF terrain, GPU post effects, multi-body gravity and tactical gameplay — then profile them against the frame budget. I also make the 3D models and write the music.</p>
 
             <ul class="disciplines hero__intro hero__intro--fade" style="--i:5" aria-label="Disciplines">
               <li>Graphics</li>
@@ -90,16 +90,16 @@
           <p class="project__summary">An open, diggable world with a stylised ocean. SDF terrain sits on a voxel material grid, so every dug cell keeps its material — and the shader reads it straight from vertex data, one draw call per chunk.</p>
           <dl class="meta">
             <div><dt>Role</dt><dd>Solo · engine &amp; rendering</dd></div>
-            <div><dt>Stack</dt><dd>Godot 4 · GDScript 2.0 · Godot shaders</dd></div>
+            <div><dt>Stack</dt><dd>Godot 4.3+ · Forward+ · GDScript 2.0 · Godot shaders</dd></div>
             <div><dt>Status</dt><dd>In development</dd></div>
           </dl>
         </header>
 
         <div class="project__media reveal">
-          <div class="video" data-yt-id="" data-yt-title="Voxel &amp; Ocean World — technical breakdown">
-            <button class="video__btn" type="button">
+          <div class="video is-pending" data-yt-id="" data-yt-title="Voxel &amp; Ocean World — technical breakdown">
+            <button class="video__btn" type="button" disabled aria-label="Voxel &amp; Ocean World — technical breakdown — video coming soon">
               <span class="video__play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.8v12.4L14 8 3 1.8Z"/></svg></span>
-              <span class="video__caption">Technical breakdown</span>
+              <span class="video__caption">Technical breakdown<span class="video__soon"> · coming soon</span></span>
             </button>
           </div>
         </div>
@@ -132,7 +132,8 @@
             </div>
             <details class="code">
               <summary><span class="code__file">ocean.gdshader — Gerstner wave</span><span class="code__lang">gdshader</span></summary>
-<pre><code data-lang="gdshader">// One wave: dir.xy, steepness, wavelength. Summed 4x in vertex().
+<pre><code data-lang="gdshader">// vertex(): start with tangent = vec3(1, 0, 0), binormal = vec3(0, 0, 1),
+// then accumulate four waves. wave = direction.xy, steepness, wavelength.
 vec3 gerstner(vec4 wave, vec3 p, inout vec3 tangent, inout vec3 binormal) {
     float k = TAU / wave.w;
     float c = sqrt(9.81 / k);
@@ -154,7 +155,8 @@ vec3 gerstner(vec4 wave, vec3 p, inout vec3 tangent, inout vec3 binormal) {
             <div class="case__body">
               <div class="ps">
                 <div class="ps__item"><span class="ps__label">Problem</span><p>An SDF encodes distance to a surface, not what it's made of. Separate meshes per material multiply draw calls — and digging still has to reveal the right material underneath.</p></div>
-                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A parallel voxel grid stores material IDs. The mesher writes one ID per triangle into <code>CUSTOM0</code>; a flat varying picks the layer of a single Texture2DArray — one material, one draw call per chunk.</p></div>
+                <!-- TODO(owner): add chunk size, meshing thread (e.g. WorkerThreadPool) and remesh time per edit. -->
+                <div class="ps__item ps__item--solution"><span class="ps__label">Solution</span><p>A parallel voxel grid stores material IDs. For every emitted triangle the mesher repeats one ID across the <code>CUSTOM0</code> values of all three vertices; a flat varying then selects a layer of a single Texture2DArray — one material, one draw call per chunk.</p></div>
               </div>
               <figure class="panel panel--gif" role="img" aria-label="Animated preview placeholder: digging reveals voxel materials">
                 <div class="panel__inner">
@@ -226,7 +228,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
           </section>
         </div>
 
-        <p class="ownership reveal"><strong>Built:</strong> voxel data model, SDF mesher, material pipeline, compositor effect, profiling. <strong>Adapted:</strong> ocean wave foundations from public shader examples. <strong>AI:</strong> used for maths review and refactoring ideas — integration, debugging and validation are mine.</p>
+        <p class="ownership reveal"><strong>Built:</strong> voxel data model, SDF mesher, material pipeline, compositor effect and profiling. <strong>Adapted:</strong> base Gerstner wave equations from public shader examples; I rewrote the conventions and derivative accumulation. <strong>AI:</strong> helped derive and cross-check the wave derivatives and suggested refactors — I reviewed every change and validated it visually and with profiler captures.</p>
 
         <div class="project__links reveal">
           <span class="link-arrow link-arrow--soon">Source</span>
@@ -248,10 +250,10 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         </header>
 
         <div class="project__media reveal">
-          <div class="video" data-yt-id="" data-yt-title="Tactical Shooter — gameplay">
-            <button class="video__btn" type="button">
+          <div class="video is-pending" data-yt-id="" data-yt-title="Tactical Shooter — gameplay">
+            <button class="video__btn" type="button" disabled aria-label="Tactical Shooter — gameplay — video coming soon">
               <span class="video__play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.8v12.4L14 8 3 1.8Z"/></svg></span>
-              <span class="video__caption">Gameplay</span>
+              <span class="video__caption">Gameplay<span class="video__soon"> · coming soon</span></span>
             </button>
           </div>
         </div>
@@ -339,10 +341,10 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
         </header>
 
         <div class="project__media reveal">
-          <div class="video" data-yt-id="" data-yt-title="Planetary Rocket Sim — trajectory prediction">
-            <button class="video__btn" type="button">
+          <div class="video is-pending" data-yt-id="" data-yt-title="Planetary Rocket Sim — trajectory prediction">
+            <button class="video__btn" type="button" disabled aria-label="Planetary Rocket Sim — trajectory prediction — video coming soon">
               <span class="video__play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 1.8v12.4L14 8 3 1.8Z"/></svg></span>
-              <span class="video__caption">Trajectory prediction</span>
+              <span class="video__caption">Trajectory prediction<span class="video__soon"> · coming soon</span></span>
             </button>
           </div>
         </div>
@@ -417,7 +419,8 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
       <header class="section-head reveal">
         <p class="label">02 — 3D</p>
         <h2 class="section-title" id="models-title">Vehicles, modelled in Blender</h2>
-        <p class="section-intro">Hard-surface studies built for real-time use: clean topology, believable proportions, materials that hold up close.</p>
+        <!-- TODO(owner): add LOD0 triangle counts, material slots and texture resolution per vehicle. -->
+        <p class="section-intro">Hard-surface studies built for real-time use: game-ready topology, PBR materials and baked detail, authored in Blender.</p>
       </header>
 
       <div class="vehicles">
@@ -523,7 +526,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
       </header>
       <div class="prose reveal">
         <p>I'm a game developer who likes the parts most people treat as black boxes: how terrain becomes triangles, how a wave becomes a normal, how three planets decide where a rocket ends up.</p>
-        <p>I work in Godot&nbsp;4 with GDScript&nbsp;2.0, and I care about the frame budget as much as the feel. When a system is done, I model the assets for it in Blender and write the music that plays over it.</p>
+        <p>I work in Godot&nbsp;4 with GDScript&nbsp;2.0 and validate systems with profiler captures, regression scenes and hands-on tuning. When a system holds up, I model its assets in Blender and write the music that plays over it.</p>
       </div>
       <dl class="facts reveal">
         <div><dt>Engine</dt><dd>Godot 4</dd></div>
@@ -538,7 +541,7 @@ func _render_callback(type: int, data: RenderData) -&gt; void:
     <section class="section wrap" id="contact" aria-labelledby="contact-title">
       <header class="section-head reveal">
         <p class="label">05 — Contact</p>
-        <h2 class="section-title" id="contact-title">Let's build something that runs well and feels right.</h2>
+        <h2 class="section-title" id="contact-title">Let's build systems that hold up — under the profiler and in the player's hands.</h2>
       </header>
       <div class="reveal">
         <a class="contact__mail" href="mailto:hello@example.com">hello@example.com</a>
