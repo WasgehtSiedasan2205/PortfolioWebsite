@@ -1,6 +1,6 @@
 # Portfolio
 
-Static, dependency-free portfolio site. Open `index.html` directly in a browser or host the folder statically. `404.html` assumes GitHub Pages at `/PortfolioWebsite/`; adjust its paths for other hosts.
+Static, dependency-free portfolio site. Host the folder statically, or preview it locally with `serve.cmd` (double-click) / `powershell -ExecutionPolicy Bypass -File .\serve.ps1` — this serves the site on `http://localhost:8080/` and opens it in Firefox (`-Port 8081` for another port, `-NoBrowser` to skip opening, Ctrl+C to stop). `404.html` assumes GitHub Pages at `/PortfolioWebsite/`; adjust its paths for other hosts.
 
 ```
 index.html            all content
@@ -8,6 +8,7 @@ assets/css/styles.css design tokens + layout
 assets/js/main.js     reveal, nav state, video facades, audio player, media panels
 assets/audio/         music files (see assets/audio/README.md)
 assets/img/           images, GIFs, videos
+serve.ps1 / serve.cmd local preview server (needed for inline YouTube playback)
 ```
 
 ## Replacing placeholders
@@ -25,7 +26,7 @@ assets/img/           images, GIFs, videos
 | Résumé | Contact section | Swap the `is-soon` span for the commented `<a>` once `assets/resume.pdf` exists. |
 | Music | `assets/audio/` + track list in `index.html` | Durations are read from the files automatically. |
 
-Note: YouTube blocks embeds on `file://` pages, so locally the video opens in a new tab; on a real host it plays inline.
+Note: YouTube blocks embeds on `file://` pages, so when `index.html` is opened directly the video opens in a new tab. Use `serve.ps1` (see top) to preview inline playback locally; on a real host it plays inline too.
 
 ## Media guidelines
 
