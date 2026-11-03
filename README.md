@@ -55,5 +55,5 @@ The hero portrait has the same frame as the project videos (16:9, max 640 px wid
 
 ## Deploying
 
-GitHub Pages: Settings → Pages → deploy from `main` / root. URLs in `<head>`, `404.html`, `robots.txt` and `sitemap.xml` assume `https://wasgehtsiedasan2205.github.io/PortfolioWebsite/`.
+GitHub Pages: Settings → Pages → deploy from `main` / root. URLs in `<head>`, `404.html`, `robots.txt` and `sitemap.xml` assume `https://jonasgrundgamedevartistcomposer.github.io/PortfolioWebsite/`.
 After changing CSS/JS, bump the `?v=` number on both references in `index.html` (and `404.html`) so visitors don't get stale files.
